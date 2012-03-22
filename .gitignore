@@ -3,3 +3,5 @@
 /eclipse
 /test-result
 /lib
+/nbproject
+.gitignore~
