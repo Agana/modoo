@@ -1,0 +1,2 @@
+#{extends 'main.html' /}
+<h2>Welcome to Modoo</h2>

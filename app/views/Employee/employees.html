@@ -1,0 +1,43 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<h2>${welcome_message}</h2>
+
+#{ifnot tasks}
+<p>No employees</p>
+#{/ifnot}
+<ul>
+	#{list items:employees, as:'employee'}
+	<li>${employee.full_name}</li> #{/list}
+
+</ul>
+
+<!-- This is for Employees -->
+<p>
+	<a id="createEmployee" href="#">New Employee</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//Create a employee 
+	$('#createEmployee').click(
+			function() {
+				$.post('@{createEmployee()}', {
+					first_name : prompt('First name ?'),
+					last_name : prompt('Last name ?'),
+					specialty : prompt('Speicalty ?')
+				}, function(employee) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+employee.id+'">'
+									+ employee.first_name + " "
+									+ employee.last_name + " " 
+									+ employee.specialty+'</li>')
+				}, 'json')
+			})
+
+	//change status
+	$('input').live('click', function() {
+		$.post('@{changeStatus()}', {
+			id : $(this).attr('id'),
+			done : $(this).val()
+		})
+	})
+</script>

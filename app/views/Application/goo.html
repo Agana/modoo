@@ -1,0 +1,111 @@
+
+<!--
+ This is for Users 
+<p>
+	<a id="newUser" href="#">New User</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//Create a user 
+	$('#newUser').click(
+			function() {
+				//, last_name: prompt('Employee last_name')
+				//" " + employee.last_name 
+				$.post('@{newUser()}', {
+					username : prompt('Username ?'),
+					password : prompt('Password ?'),
+					employeeId : prompt('Which employee ?'),
+					authorization : prompt('Authorization ?')
+				}, function(user) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+user.id+'">'
+									+ user.username + " "
+									+ user.authorization +
+									'</li>')
+				}, 'json')
+			})
+
+	//change status
+	$('input').live('click', function() {
+		$.post('@{changeStatus()}', {
+			id : $(this).attr('id'),
+			done : $(this).val()
+		})
+	})
+</script>
+
+
+
+
+<!-- This is for Expense categories 
+<p>
+	<a id="newCategory" href="#">New Expense Category</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//Create a category 
+	$('#newCategory').click(
+			function() {
+				//, last_name: prompt('Employee last_name')
+				//" " + employee.last_name 
+				$.post('@{newCategory()}', {
+					title : prompt('Title ?')
+					
+				}, function(category) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+category+'">'
+									+ category.title+'</li>')
+				}, 'json')
+			})
+
+	//change status
+	$('input').live('click', function() {
+		$.post('@{changeStatus()}', {
+			id : $(this).attr('id'),
+			done : $(this).val()
+		})
+	})
+</script>
+
+<!-- This is for Purchases/expenses 
+<p>
+	<a id="newPurchase" href="#">New Purchase</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//Create a purchase 
+	$('#newPurchase').click(
+			function() {
+				//, last_name: prompt('Employee last_name')
+				//" " + employee.last_name 
+				$.post('@{newPurchase()}', {
+					title : prompt('Category ?'),
+					amount : prompt('Amount ?'),
+					purchaseDate : prompt('Date ?')
+				}, function(purchase) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+purchase+'">'
+									+ purchase.category.title + " "
+									+ purchase.amount + " " 
+									+ purchase.purchaseDate+'</li>')
+				}, 'json')
+			})
+
+	//change status
+	$('input').live('click', function() {
+		$.post('@{changeStatus()}', {
+			id : $(this).attr('id'),
+			done : $(this).val()
+		})
+	})
+</script>
+
+<!-- upload receipt 
+<form>
+#{form @uploadPhoto(), enctype:'multipart/form-data'}
+    <input type="text" name="title" />
+    <input type="file" id="photo" name="photo" />
+    <input type="submit" value="Push it up..." />
+#{/}</form>
+
+-->
