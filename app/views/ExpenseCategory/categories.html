@@ -1,66 +1,94 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'main.html'/} #{set title:'Staff Categories'/}  #{header /} #{bootstrap /}
+<div class="wrapper col2">
+	<div id="topbar">
+		<div id="topnav"></div>
+		<br class="clear" />
+	</div>
+</div>
+<div class="wrapper col3">
+	<div class="content">
+		#{sidebar /}
 
-<h2>${welcome_message}</h2>
+		<div
+			style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+			<div id="tab">
+				<ul>
+					<li><a href="#tab-1">Add Categories</a></li>
+					<li><a href="#tab-2">Show Categories</a></li>
+					<!-- <li><a href="#tab-3">Edit Categories</a></li> -->
+				</ul>
+				
+				<div id="tab-1">
+					<form class="form-horizontal" action="@{PurchaseCategoryController.newCategory()}", method="POST">
+						<div class="control-group">
+							<label class="control-label" for="fname">Category Name</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="fname"
+									name="categoryName" />
+							</div>
+						</div>
 
-#{ifnot tasks}
-<p>No users</p>
-#{/ifnot}
-<ul>
-	#{list items:categories, as:'category'}
-	<li>${category.title}</li> #{/list}
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />    
+					</form>
 
-</ul>
+				</div>
+				
+				<div id="tab-2">
+					<form action="@{PurchaseCategoryController.deleteCategory()}" method="post">
+					#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
+					<table>
+						<thead>
+							<th>Categories</th>
+							<th>Delete</th>
+						</thead>
+						<tbody>
+							#{list items:expenseCats, as:"expenseCat"}
+							<tr>
+								<td>${expenseCat.categoryName}</td>
+								<td style="text-align:center;"><input type="checkbox" name="categoryid[]" value="${expenseCat.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					
+					<input class="btn btn-success" style="margin-left: 500px;" id="submit" type="submit" />    
+					
+					</form>
+				</div>
+				
+				<!-- <div id="tab-3">
+					<form class="form-horizontal" action="@{PurchaseCategoryController.newCategory()}", method="POST">
+					
+						<div class="control-group">
+							<label class="control-label" for="fname">Select Category</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="fname" name="categoryid" >
+									#{list items:expenseCats, as:"expenseCat"}
+									<option value="${expenseCat.id}">${expenseCat.categoryName}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="fname">Category Name</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="fname" name="categoryName" />
+							</div>
+						</div>
 
-<!-- This is for Users -->
-<p>
-	<a id="createCategory" href="#">New Category</a>
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />    
+					</form>
+				</div>
+			 -->
+			</div>
+		</div>
 
-</p>
+	</div>
 
-<form id="new_category">
-	Category name: <input type="text" id="category_title" /> Yearly
-	Budget: <input type="text" id="category_budget" />
-	<input type="submit" class = "button" value="Send"/>
-	
-</form>
-<script>
-$function(){
-	$(".button").click(function(){
-		.post('@newCategory()}', {
-			title: $('#categy_title').val(), yearly_budget: $('#category_budget').val()
-		},
-		function(category) {
-			$('ul').prepend(
-					'<li><input type="checkbox" id="'+category.id+'">'
-							+ category.title + " "
-							+ category.yearly_budget + '</li>')
-		}, 'json')
-	})
-}
-
-</script>
-<script type="text/javascript" charset="utf-8">
-	//Create a employee 
-	$('#createCategory').click(
-			function() {
-				//, last_name: prompt('Employee last_name')
-				//" " + employee.last_name 
-				$.post('@{newCategory()}', {
-					title : prompt('Category title ?'),
-					yearly_budget : prompt('Yearly budget ?'),
-				}, function(category) {
-					$('ul').prepend(
-							'<li><input type="checkbox" id="'+category.id+'">'
-									+ category.title + " "
-									+ category.yearly_budget + '</li>')
-				}, 'json')
-			})
-
-	//change status
-	$('input').live('click', function() {
-		$.post('@{UserController.changeStatus()}', {
-			id : $(this).attr('id'),
-			done : $(this).val()
-		})
-	})
-</script>
+</div>
+#{footer /}

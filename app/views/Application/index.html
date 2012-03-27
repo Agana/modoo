@@ -1,66 +1,62 @@
-#{extends 'main.html' /} #{set title:'Home' /}
-
-<h2>${welcome_message}</h2>
-
-#{ifnot tasks}
-<p>No employees</p>
-#{/ifnot}
-<ul>
-	#{list items:employees, as:'employee'}
-	<li>${employee.full_name}</li> #{/list}
-
-</ul>
-
-<!-- This is for Employees -->
-<p>
-	<a id="manageEmployees" href="@{EMployeeController.loadEmployees()}">Manage Employees</a>
-
-</p>
-<script type="text/javascript" charset="utf-8">
-	//Create a employee 
-	$('#manageEmployees').click(
-			function() {
-				$.post('@{EmployeeController.loadEmployees()}', {
-				})
-			})
-</script>
-
-<!-- This is for Users -->
-<p>
-	<a id="manageUsers" href="@{UserController.loadUsers()}">Manage Users</a>
-
-</p>
-<script type="text/javascript" charset="utf-8">
-	//CManage users page
-	$('#manageUsers').click(
-			function() {
-				
-				$.post('@{UserController.newUser()}', {
-					
-				})
-				
-			})
-
+#{extends "main.html"/}
+#{set title:"Modoo" /}
+#{set 'moreStyles'}
+	<style type="text/css">
+		
+		.fl_right{
+			font-family:Georgia, "Times New Roman", Times, serif;
+			font-size: 20px;
+			color: white;
+		}
+		
+		#log_form{
+			margin:auto;
+			padding:20px 20px;
+		}
 	
-</script>
-
-
-<!-- This is for Categories -->
-<p>
-	<a id="manageCategories" href="@{CategoryController.loadCategories()}">Categories</a>
-
-</p>
-<script type="text/javascript" charset="utf-8">
-	//CManage categories page 
-	$('#manageCategories').click(
-			function() {
-				
-				$.post('@{CategoryController.newCategory()}', {
-					
-				})
-				
-			})
-
+		.text{
+			width:260px;
+			font-size:20px;
+		}
 	
-</script>
+		#login{
+			width:200px;
+			height:30px;
+		}
 
+	</style>
+#{/set}
+#{header /}
+<div class="wrapper col2">
+	<div id="topbar">    
+		<div id="topnav">
+		</div> 
+		<br class="clear" />
+	</div>
+</div>
+<div class="wrapper col3">
+	<div id="intro">
+		<div class="fl_left">
+			<h2>Cursus penati saccum ut curabitur nulla.</h2>
+			<p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
+			<p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+		</div>
+		<div class="fl_right" style="width: 380px; height: 300px; background-color: #1C5E82;">
+		    <div id="log_form">
+				<form>
+					<label>Username</label><br />
+					<input type="text" name="username" class="text" /><br />
+					<label>Password</label><br />
+					<input type="password" name="pass" class="text"/><br />
+					<input type="submit" name="login" value="Log in" id="login"/>			
+				</form> 		
+			</div>
+		</div>
+		<br class="clear" />
+	</div>
+  
+	<div style="height: 30px;">
+		&nbsp;
+	</div>
+</div>
+#{footer /}

@@ -1,42 +1,38 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'main.html'/}
+#{set title:'Home'/}
 
-<h2>${welcome_message}</h2>
+#{header /}
+<div class="wrapper col2">
+  <div id="topbar">
+    <div id="topnav">
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col3">
+<div class="content">
+#{sidebar /}
 
-#{ifnot tasks}
-<p>No users</p>
-#{/ifnot}
-<ul>
-	#{list items:users, as:'user'}
-	<li>${user.username}</li> #{/list}
+	<div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+		<div id="tab">
+			<ul>
+				<li><a href="#tab-1">Add User</a></li>
+				<li><a href="#tab-2">Show User</a></li>
+				<li><a href="#tab-3">Edit User</a></li>
+			</ul>
+			<div id="tab-1">
+				Add Users
+			</div>
+			<div id="tab-2">
+				Show Users
+			</div>
+			<div id="tab-3">
+				Edit Users
+			</div>
+		</div>
+	</div>
+	
+</div>
 
-</ul>
-
-<!-- This is for Users -->
-<p>
-	<a id="createUser" href="#">New User</a>
-
-</p>
-<script type="text/javascript" charset="utf-8">
-	//Create a employee 
-	$('#createUser').click(
-			function() {
-				//, last_name: prompt('Employee last_name')
-				//" " + employee.last_name 
-				$.post('@{newUser()}', {
-					username : prompt('Username ?'),
-					password : prompt('Password name ?'),
-				}, function(user) {
-					$('ul').prepend(
-							'<li><input type="checkbox" id="'+user.id+'">'
-									+ user.username +'</li>')
-				}, 'json')
-			})
-
-	//change status
-	$('input').live('click', function() {
-		$.post('@{UserController.changeStatus()}', {
-			id : $(this).attr('id'),
-			done : $(this).val()
-		})
-	})
-</script>
+</div>
+#{footer /}

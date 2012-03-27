@@ -1,0 +1,84 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<h2>${welcome_message}</h2>
+<h2>Welcome to Modoo Administration</h2>
+#{ifnot tasks}
+<p>No employees</p>
+#{/ifnot}
+<ul>
+	#{list items:employees, as:'employee'}
+	<li>${employee.full_name}</li> #{/list}
+
+</ul>
+
+<!-- This is for Employees -->
+<p>
+	<a id="manageEmployees" href="@{EMployeeController.loadEmployees()}">Manage Employees</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//Create a employee 
+	$('#manageEmployees').click(
+			function() {
+				$.post('@{EmployeeController.loadEmployees()}', {
+				})
+			})
+</script>
+
+<!-- This is for Users -->
+<p>
+	<a id="manageUsers" href="@{UserController.loadUsers()}">Manage Users</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//CManage users page
+	$('#manageUsers').click(
+			function() {
+				
+				$.post('@{UserController.newUser()}', {
+					
+				})
+				
+			})
+
+	
+</script>
+
+
+<!-- This is for Categories -->
+<p>
+	<a id="manageCategories" href="@{CategoryController.loadCategories()}">Categories</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//CManage categories page 
+	$('#manageCategories').click(
+			function() {
+				
+				$.post('@{CategoryController.newCategory()}', {
+					
+				})
+				
+			})
+
+			
+		</script>	
+<p>
+	<a id="managePurchases" href="@{PurchaseController.loadPurchases()}">Manage Purchases</a>
+
+</p>
+
+<script type="text/javascript" charset="utf-8">
+	//CManage purchases page 
+	$('#managePurchases').click(
+			function() {
+				
+				$.post('@{PurchaseController.newPurchase()}', {
+					
+				})
+				
+			})
+			
+	
+</script>
+

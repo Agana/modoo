@@ -6,20 +6,30 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Purchase extends Model{
+public class Purchase extends Model {
 	
-	public ExpenseCategory category;
-	public Long amount;
-	public String purchaseDate;
-	
-	public Purchase(String categoryName, Long amount, String purchaseDate){
-		this.category = new ExpenseCategory(categoryName);
-		this.amount = amount;
-		this.purchaseDate = purchaseDate;
-	}
-	
-	public String toString(){
-		return category.title;
-	}
+	@ManyToOne
+    public RegularExpenseItem regular_item;
+    public float amount;
+    public float amountPaid;
+    public float amountWitheld;
+    public Date purchaseDate;
+    @OneToOne
+    public Supplier supplier;
+    @ManyToOne
+    public User createdBy;
+    
 
+    public Purchase(RegularExpenseItem item, float amount, Supplier supplier, Date purchaseDate, User user) {
+        this.regular_item = item;
+        this.amount = amount;
+        this.supplier = supplier;
+        this.purchaseDate = purchaseDate;
+        this.createdBy = user;
+    }
+
+    @Override
+    public String toString() {
+        return regular_item.item_name;
+    }
 }

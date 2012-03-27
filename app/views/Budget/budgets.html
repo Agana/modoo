@@ -1,0 +1,111 @@
+#{extends 'main.html'/}
+#{set title:'Employees'/}
+
+#{header /}
+#{bootstrap /}
+
+#{set 'moreScripts'}
+	<script type="text/javascript">
+    
+    $(function(){
+        $("#datepicker").datepicker({dateFormat:'yy-mm-dd'});
+        $("#datepicker-1").datepicker({dateFormat:'yy-mm-dd'});
+    });
+    </script>
+#{/set}
+
+#{set 'moreStyles'}
+<style type="text/css">
+    label{
+        width: 200px;
+    }
+</style>
+#{/set}
+<div class="wrapper col2">
+    <div id="topbar">
+        <div id="topnav">
+        </div>
+        <br class="clear" />
+    </div>
+</div>
+<div class="wrapper col3">
+    <div class="content">
+        #{sidebar /}
+
+        <div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+            <div id="tab">
+                <ul>
+                    <li><a href="#tab-1">Add Budget</a></li>
+                    <li><a href="#tab-2">Show Budgets</a></li>
+                   <!--  <li><a href="#tab-3">Edit Budget</a></li>  -->
+                </ul>
+                <div id="tab-1">
+                    <form class="form-horizontal" action="@{BudgetController.newBudget()}", method="POST">
+                        <div class = "control-group">
+                            <label class="control-label" for="expenseCat">Expense Category</label>
+                            <div class="controls">
+                                <select class="input-xlarge focused" id="expenseCat" name="expenseCat">
+                                	<option value="-"> -- Expense Category --</option>
+                                	#{list items:expenseCats, as:'expensecat'}
+                                	<option value="${expensecat.id}">${expensecat.categoryName}</option>
+                                	#{/list}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="budget">Allocated Amount</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="budget" type="text" name="budget" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="budget_date">Budget Date</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" type="text" name="budget_date" id="datepicker"/>
+                            </div>
+                        </div>
+
+                       <input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />                                              
+                    </form>
+
+                </div>
+                <div id="tab-2">
+                    <form action="@{BudgetController.deleteBudget()}" method="post">
+						#{if flash.error}
+							<p class="error">${flash.error}</p>
+						#{/if}
+						<table>
+							<thead>
+								<th>Category</th>
+								<th>Budget</th>
+								<th>Delete</th>
+							</thead>
+							<tbody>
+								#{list items:budgets, as:"budget"}
+								<tr>
+									<td>${budget.category}</td>
+									<td>${budget.budgetAmount}</td>
+									<td style="text-align:center;"><input type="checkbox" name="budgetid[]" value="${budget.id}"/></td>
+								</tr>
+								#{/list}
+							</tbody>
+						</table>
+						
+						<input class="btn btn-success" style="margin-left: 500px;" id="submit" type="submit" />    
+					
+					</form>
+                </div>
+               <!--   <div id="tab-3">
+                    Edit Employees
+                </div>
+                -->
+            </div>
+        </div>
+
+    </div>
+
+</div>
+#{footer /}

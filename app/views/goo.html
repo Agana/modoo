@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    
+    $(function(){
+        $("#datepicker").datepicker();
+        $("#datepicker-1").datepicker();
+    });
+    
+    $('#submit').click(
+        $.post('@{createEmployee()}',
+            {
+                first_name:$('#fname').val(),
+                middle_name:$('#mname').val(),
+                last_name:$('#lname').val(),
+                sex:$('input[name=sex]').val(),
+                employeetypeid:$('staffcat').val(),
+                createdBy:null
+            },
+        function(employee) {
+            console.log(employee.first_name);
+            console.log(employee.last_name);
+            console.log(employee.sex);
+        },'json')
+    );
+    
+</script>

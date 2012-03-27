@@ -1,0 +1,71 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<h2>${welcome_message}</h2>
+
+#{ifnot employees}
+<p>No employees</p>
+#{/ifnot}
+<ul>
+	#{list items:employees, as:'employee'}
+	<li>${employee.full_name}</li> #{/list}
+
+</ul>
+
+<!-- This is for Employees -->
+<div class ="whitethings">
+<p>
+	<a class="crudEmployee" id="createEmployee" href="#">New Employee</a>
+
+</p>
+
+<p>
+	<a class="crudEmployee" id="deleteEmployee" href="#">Delete Employee</a>
+
+</p>
+
+<p>
+	<a class="crudEmployee" id="showEmployees" href="#">Show all Employees</a>
+
+</p>
+
+</div>
+<script type="text/javascript" charset="utf-8">
+    
+    $('#showEmployees"').click(
+                        function(){
+                            $.post('@listEmployees()')}, function(employee) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+employee.id+'">'
+									+ employee.first_name + " "
+									+ employee.last_name + " " 
+									+ employee.specialty+'</li>')
+				}, 'json')
+                                                              
+</script>
+<script type="text/javascript" charset="utf-8">
+    
+    	//Create a employee 
+	$('#createEmployee').click(
+			function() {
+				$.post('@{createEmployee()}', {
+					first_name : prompt('First name ?'),
+					last_name : prompt('Last name ?'),
+					specialty : prompt('Speicalty ?'),
+					type: prompt('What type ?')
+				}, function(employee) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+employee.id+'">'
+									+ employee.first_name + " "
+									+ employee.last_name + " " 
+									+ employee.specialty+'</li>')
+				}, 'json')
+			})
+
+	//change status
+	$('input').live('click', function() {
+		$.post('@{changeStatus()}', {
+			id : $(this).attr('id'),
+			done : $(this).val()
+		})
+	})
+</script>

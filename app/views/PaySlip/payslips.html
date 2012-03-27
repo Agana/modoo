@@ -1,0 +1,192 @@
+#{extends 'main.html'/} #{set title:'Employees'/} #{header /}
+#{bootstrap /} #{set 'moreScripts'}
+<script type="text/javascript">
+	$(function() {
+		var i, yr, now = new Date();
+		for (i = 0; i < 10; i++) {
+			yr = now.getFullYear() + i;
+			$('#datepicker').append($('<option/>').val(yr).text(yr));
+		}
+		;
+
+	});
+</script>
+#{/set} #{set 'moreStyles'}
+<style type="text/css">
+label {
+	width: 200px;
+}
+</style>
+#{/set}
+<div class="wrapper col2">
+	<div id="topbar">
+		<div id="topnav"></div>
+		<br class="clear" />
+	</div>
+</div>
+<div class="wrapper col3">
+	<div class="content">
+		#{sidebar /}
+
+		<div
+			style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+			<div id="tab">
+				<ul>
+					<li><a href="#tab-1">Manage Payroll</a></li>
+					<!-- > <li><a href="#tab-2">Show Employees</a></li> --
+                  <!--   <li><a href="#tab-3">Edit Employee</a></li> -->
+				</ul>
+				<div id="tab-1">
+					<form class="form-inline"
+						action="@{PaySlipController.loadPaySlips()}" , method="POST">
+
+						<!-- <label></label> --> 
+						Staff Categories
+						<select class="input-medium" name="employeeTypeId"> 
+							#{list
+							items:employeeTypes, as:"empType"}
+							<option value="${empType.id}">${empType.name}</option> #{/list}
+						</select> 
+						
+						<!-- <label></label> --> 
+						Year
+						<select class="input-small" id="datepicker" name="year">
+						</select> 
+						
+						<!-- <label></label> -->
+						Month
+						 <select class="input-small" name="month">
+							<option value="01">Jan</option>
+							<option value="02">Feb</option>
+							<option value="03">Mar</option>
+							<option value="04">Apr</option>
+							<option value="05">May</option>
+							<option value="06">Jun</option>
+							<option value="07">Jul</option>
+							<option value="08">Aug</option>
+							<option value="09">Sep</option>
+							<option value="10">Oct</option>
+							<option value="11">Nov</option>
+							<option value="12">Dec</option>
+						</select> 
+						
+						<input class="btn btn-success" id="submit" type="submit" /> <br/>
+						</form>
+						<hr/>
+						
+						<p>
+						
+						<form class="form-inline"
+						action="@{PaySlipController.newPaySlip()}" , method="POST">
+						
+						Staff Categories
+						<select class="input-medium" name="employeeTypeId"> 
+							#{list
+							items:employeeTypes, as:"empType"}
+							<option value="${empType.id}">${empType.name}</option> #{/list}
+						</select> 
+						
+						<input class="btn btn-success" id="submit" type="submit" /> <br/>
+						
+					
+						
+						</form>
+							<hr/>
+						</p>
+						
+						#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
+					
+						<table>
+						
+						<thead>
+							<tr>
+								<th>Unissued Slips</th>
+								<th>Pay</th>
+								<th>Revoke</th>					
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:unIssuedSlips, as:"unIssuedSlip"}
+							<tr>
+								<td>${unIssuedSlip.thisMonth}</td>
+								
+								<td style="text-align:center;"><input type="checkbox" name="employeeid[]" value="${employee?.id}"/></td>
+								<td style="text-align:center;"><input type="checkbox" name="payslipid[]" value="${unissuedslip?.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					<hr/>
+					
+					<table>
+						<thead>
+							<tr>
+								<th>Employee Name</th>
+								<th>Amount Paid</th>
+								<th>Total Deductions</th>
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:employees, as:"employee"}
+							<tr>
+								<td>${employee}</td>
+								<td style="text-align:center;"><input type="checkbox" name="employeeid[]" value="${employee.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					
+					
+					</form>
+
+				</div>
+
+				<!-- 
+                <div id="tab-2">
+					<form action="@{EmployeeController.removeEmployee()}" method="post">
+					#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Gender</th>
+								<th>Employee Type</th>
+								<th>Date Hired</th>
+								<th>Date Fired</th>
+								<th>Delete</th>					
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:employees, as:"employee"}
+							<tr>
+								<td>${employee}</td>
+								<td>${employee.sex}</td>
+								<td>${employee.type}</td>
+								<td>${employee.date_hired.format("dd-MM-yy")}</td>
+								<td>${employee.date_fired.format("dd-MM-yy")}</td>
+								<td style="text-align:center;"><input type="checkbox" name="employeeid[]" value="${employee.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					
+					<input class="btn btn-success" style="margin-left: 580px;" id="submit" type="submit" />    
+					
+					</form>
+                </div>
+                
+                 -->
+				<!-- <div id="tab-3">
+                    Edit Employees
+                </div> -->
+			</div>
+		</div>
+
+	</div>
+
+</div>
+#{footer /}

@@ -1,0 +1,85 @@
+#{extends 'main.html'/}
+#{set title:'Home'/}
+
+#{header /}
+#{bootstrap /}
+<div class="wrapper col2">
+  <div id="topbar">
+    <div id="topnav">
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col3">
+<div class="content">
+#{sidebar /}
+
+	<div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+		<div id="tab">
+			<ul>
+				<li><a href="#tab-1">Add Supplier</a></li>
+				<li><a href="#tab-2">Show Supplier</a></li>
+				<!-- <li><a href="#tab-3">Edit Supplier</a></li> -->
+			</ul>
+			<div id="tab-1">
+                    <form class="form-horizontal" action="@{SupplierController.newSupplier()}", method="POST">
+                        <div class = "control-group">
+                            <label class="control-label" for="fname">Supplier Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="fname" name="supplierName" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="mname">Location</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="mname" type="text" name="location" />
+                            </div>
+                        </div>
+
+                       <input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />                                              
+                    </form>
+
+                </div>
+                
+			<div id="tab-2">
+				Show Supplier
+					<form action="@{SupplierController.deleteSupplier()}" method="post">
+					#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
+					<table>
+						<thead>
+							<tr>
+								<th>Supplier Name</th>
+								<th>Location</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:suppliers, as:"supplier"}
+							<tr>
+								<td>${supplier.supplierName}</td>
+								<td>${supplier.location}</td>
+								<td style="text-align:center;"><input type="checkbox" name="supplierids[]" value="${supplier.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					
+					<input class="btn btn-success" style="margin-left: 500px;" id="submit" type="submit" />    
+					
+					</form>
+			</div>
+			
+		<!-- 	<div id="tab-3"> 
+				Edit Supplier
+			</div>-->
+		</div>
+	</div>
+	
+</div>
+
+</div>
+#{footer /}

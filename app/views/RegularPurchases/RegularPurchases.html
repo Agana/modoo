@@ -1,0 +1,112 @@
+#{extends 'main.html'/}
+#{set title:'Home'/}
+
+#{header /}
+#{bootstrap /}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+    
+    $(function(){
+        $("#datepicker").datepicker();
+        $("#datepicker-1").datepicker();
+    });
+    </script>
+#{/set}
+
+#{set 'moreStyles'}
+<style type="text/css">
+    label{
+        width: 200px;
+    }
+</style>
+#{/set}
+<div class="wrapper col2">
+	<div id="topbar">
+		<div id="topnav"></div>
+		<br class="clear" />
+	</div>
+</div>
+<div class="wrapper col3">
+	<div class="content">
+		#{sidebar /}
+
+		<div
+			style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+			<div id="tab">
+				<ul>
+					<li><a href="#tab-1">Add Regular Purchases</a>
+					</li>
+					<li><a href="#tab-2">Show Regular Purchases</a>
+					</li>
+					<!-- <li><a href="#tab-3">Edit Regular Purchases</a> 
+					</li>-->
+				</ul>
+				
+				<div id="tab-1">
+					<form class="form-horizontal"
+						action="@{RegularPurchaseController.createRegularPurchase()}" , method="POST">
+						
+						<div class="control-group">
+							<label class="control-label" for="name">Expense Name</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="name" type="text"
+									name="name" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="categoryid">Category</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="categoryid" name="categoryids">
+									<option value="-">-- Expense Category --</option>
+									#{list items:expenseCats, as:'category'}
+									<option value=${category.id}>${category.categoryName}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />
+					</form>
+
+				</div>
+				
+				<div id="tab-2">
+					<form action="@{RegularPurchaseController.deleteRegularPurchase()}" method="post">
+					#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
+					<table>
+						<thead>
+							<tr>
+								<th>Expense Name</th>
+								<th>Category</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:regExpenseItems, as:"expenseitem"}
+							<tr>
+								<td>${expenseitem.item_name}</td>
+								<td>${expenseitem.item_category}</td>
+								<td style="text-align:center;"><input type="checkbox" name="expenseid[]" value="${expenseitem.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					
+					<input class="btn btn-success" style="margin-left: 500px;" id="submit" type="submit" />    
+					
+					</form>
+				</div>
+				
+				<!-- <div id="tab-3">Edit Regular Purchases</div> -->
+			</div>
+		</div>
+
+	</div>
+
+</div>
+#{footer /}

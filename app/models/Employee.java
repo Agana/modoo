@@ -8,55 +8,48 @@ import org.hibernate.dialect.FirebirdDialect;
 import play.db.jpa.Model;
 import play.*;
 import java.util.*;
+import play.data.validation.Required;
 
 @Entity
 public class Employee extends Model {
 
 	public String first_name;
-	public String other_name;
+	public String middle_name;
 	public String last_name;
-	public String full_name = first_name + " " + last_name;
 	public String sex;
-	public String specialty;
-	public String employeeType;
 	public Date date_hired;
 	public Date date_fired;
-	public Date registration_date;
-	public boolean fired;
-	
-	public String authorization;
-	public String username;
-	public String password;
+	// public Date registration_date;
+	@ManyToOne
+	public EmployeeType type;
+	@ManyToOne
+	public User createdBy;
 
-	public Employee(String first_name, String other_name, String last_name,
-			String sex, String employee_type, Date date_hired,
-			Date date_fired, Date registration_date) {
+	public Employee(@Required String first_name, String middle_name,
+			@Required String last_name, @Required String sex,
+			@Required long employeeTypeId, Date date_hired, Date date_fired,
+			@Required User user) {
 
 		this.first_name = first_name;
-		this.other_name = other_name;
 		this.last_name = last_name;
+		this.middle_name = middle_name;
 		this.sex = sex;
-		this.employeeType = employee_type;
-		this.date_fired = date_fired;
+		this.type = EmployeeType.findById(employeeTypeId);
 		this.date_hired = date_hired;
-		this.registration_date = registration_date;
+		this.date_fired = date_fired;
+		this.createdBy = user;
 	}
 
-	public Employee(String first_name, String last_name, String sex, String specialty) {
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.sex = sex;
-		this.specialty=specialty;
-		this.full_name = first_name + " " + last_name;
-		this.authorization = authorization;
-		this.username= username;
-		this.password = password;
-	}
-	
-	
-
-	public String toString() {
-		return first_name;
+	public void setDateHired(Date dateHired) {
+		this.date_hired = dateHired;
 	}
 
+	public void setDateFired(Date dateFired) {
+		this.date_fired = dateFired;
+	}
+
+	@Override
+	public String toString() { // used by CRUD admin
+		return first_name + " " + middle_name + " " + last_name;
+	}
 }

@@ -1,0 +1,42 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<h2>${welcome_message}</h2>
+
+#{ifnot tasks}
+<p>No users</p>
+#{/ifnot}
+<ul>
+	#{list items:users, as:'user'}
+	<li>${user.username}</li> #{/list}
+
+</ul>
+
+<!-- This is for Users -->
+<p>
+	<a id="createUser" href="#">New User</a>
+
+</p>
+<script type="text/javascript" charset="utf-8">
+	//Create a employee 
+	$('#createUser').click(
+			function() {
+				//, last_name: prompt('Employee last_name')
+				//" " + employee.last_name 
+				$.post('@{newUser()}', {
+					username : prompt('Username ?'),
+					password : prompt('Password name ?'),
+				}, function(user) {
+					$('ul').prepend(
+							'<li><input type="checkbox" id="'+user.id+'">'
+									+ user.username +'</li>')
+				}, 'json')
+			})
+
+	//change status
+	$('input').live('click', function() {
+		$.post('@{UserController.changeStatus()}', {
+			id : $(this).attr('id'),
+			done : $(this).val()
+		})
+	})
+</script>

@@ -1,0 +1,91 @@
+#{extends 'main.html'/} #{set title:'Staff Categories'/}  #{header /} #{bootstrap /}
+
+#{set 'moreStyles'}
+<style type="text/css">
+    label{
+        width: 200px;
+    }
+</style>
+#{/set}
+
+<div class="wrapper col2">
+    <div id="topbar">
+        <div id="topnav">
+        </div>
+        <br class="clear" />
+    </div>
+</div>
+<div class="wrapper col3">
+    <div class="content">
+        #{sidebar /}
+
+        <div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+            <div id="tab">
+                <ul>
+                    <li><a href="#tab-1">New Witheld Tax</a></li>
+                    <li><a href="#tab-2">Show Witheld Taxes</a></li>
+                   <!--  <li><a href="#tab-3">Edit Witheld Taxes</a></li> -->
+                </ul>
+                <div id="tab-1">
+                    <form class="form-horizontal" action="@{WitheldTaxController.newWitheldTax()}", method="POST">
+                        <div class = "control-group">
+                            <label class="control-label" for="fname">Withold when amount exceeds</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="fname" name="totalAmount" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="mname">Percentage to withold</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="mname" type="text" name="percentage" />
+                            </div>
+                        </div>
+
+
+                       <input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />                                              
+                    </form>
+
+                </div>
+                <div id="tab-2">
+                    Show Employees
+				<form action="@{WitheldTaxController.deleteWitheldTax()}" method="post">
+				#{if flash.error}
+					<p class="error">${flash.error}</p>
+				#{/if}
+				<table>
+					<thead>
+						<tr>
+							<th>Amount To exceed</th>
+							<th>Percentage To deduct</th>
+							<th>Valid Date</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						#{list items:withHeldTaxList, as:"tax"}
+						<tr>
+							<td>${tax.totalAmount}</td>
+							<td>${tax.percentage}</td>
+							<td>${tax.year.format("yy")}</td>
+							<td style="text-align:center;"><input type="checkbox" name="taxids[]" value="${tax.id}"/></td>
+						</tr>
+						#{/list}
+					</tbody>
+				</table>
+				
+				<input class="btn btn-success" style="margin-left: 578px;" id="submit" type="submit" />    
+				
+				</form>
+                </div>
+               <!--  <div id="tab-3">
+                    Edit Employees
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+
+</div>
+#{footer /}
