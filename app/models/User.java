@@ -1,48 +1,27 @@
 package models;
 
-import play.data.validation.Email;
-import play.data.validation.MinSize;
-import play.data.validation.Password;
-import play.data.validation.Required;
+import play.data.validation.*;
 import play.db.jpa.Model;
-import javax.persistence.*;
-import play.*;
-import java.util.*;
 import play.libs.Codec;
+import javax.persistence.*;
 
 @Entity
 public class User extends Model {
-
 	@Required
 	@MinSize(6)
 	public String username;
-
 	@Required
 	@Email
 	public String email;
-
 	@Required
 	@Password
 	@Transient
 	public String password;
 	public String passwordHash;
-
 	@Required
-	public String firstName;
+	public String firstname;
 	@Required
-	public String lastName;
-
-//removed employeeId because if we have a table of users, who are already known then we don't need to map them to themselves
-	//in another table
-	
-
-//	public User(@Required String username, @Required String password,
-//			int employeeId, String authorization) {
-//		this.employeeId = employeeId;
-//		this.username = username;
-//		this.password = password;
-//		this.authorization = authorization;
-//	}
+	public String lastname;
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -53,9 +32,5 @@ public class User extends Model {
 		// return TRUE if there is a single matching username/passwordHash
 		return (count("username=? AND PasswordHash=?", username,
 				Codec.hexMD5(password)) == 1);
-	}
-
-	public String toString() {
-		return username;
 	}
 }

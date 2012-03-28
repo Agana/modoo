@@ -25,7 +25,7 @@ public class Authenticate extends Controller {
 		}
 		// if no errors, log the user in and redirect to the index page
 		doLoginLogic(user.username);
-		Application.start();
+		render("Application/start.html");
 	}
 	
 	public static User getLoggedInUser() {

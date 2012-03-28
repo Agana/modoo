@@ -19,47 +19,48 @@ label {
 #{/set}
 
 <div class="wrapper col2">
-    <div id="topbar">
-        <div id="topnav">
-        </div>
-        <br class="clear" />
-    </div>
-</div>
-<div class="wrapper col3">
-    <div class="content">
-        #{sidebar /}
-        
-
-<div id="content">
-	<h1>Register User</h1>
-	<p>To register for ePlay, just complete the form below and click
-		the Register button when you are done!</p>
-	<div id="registerForm">
-		<form action="@{Authenticate.doRegister()}" method="POST">
-			<p class="field">
-				<span class="error">#{error 'user.username' /}</span> <label>Username</label>
-				<input type="text" name="user.username"
-					value="${flash['user.username']}" />
-			</p>
-			<p class="field">
-				<span class="error">#{error 'user.password' /}</span> <label>Password</label>
-				<input type="password" name="user.password" />
-			</p>
-			<p class="field">
-				<span class="error">#{error 'user.firstname' /}</span> <label>Firstname</label>
-				<input type="text" name="user.firstname"
-					value="${flash['user.firstname']}" />
-			</p>
-			<p class="field">
-				<span class="error">#{error 'user.lastname' /}</span> <label>Lastname</label>
-				<input type="text" name="user.lastname"
-					value="${flash['user.lastname']}" />
-			</p>
-			<p class="field">
-				<span class="error">#{error 'user.email' /}</span> <label>Email</label>
-				<input type="text" name="user.email" value="${flash['user.email']}" />
-			</p>
-			<input type="submit" name="create" value="Register" />
-		</form>
+	<div id="topbar">
+		<div id="topnav"></div>
+		<br class="clear" />
 	</div>
 </div>
+<div class="wrapper col3">
+	<div class="content">
+		#{sidebar /}
+
+
+		<div id="content">
+			<h1>Register User</h1>
+			<p>To register for ePlay, just complete the form below and click
+				the Register button when you are done!</p>
+			<div id="registerForm">
+				<form action="@{Authenticate.doRegister()}" method="POST">
+					<p class="field">
+						<span class="error">#{error 'user.username' /}</span> <label>Username</label>
+						<input type="text" name="user.username"
+							value="${flash['user.username']}" />
+					</p>
+					<p class="field">
+						<span class="error">#{error 'user.password' /}</span> <label>Password</label>
+						<input type="password" name="user.password" />
+					</p>
+					<p class="field">
+						<span class="error">#{error 'user.firstname' /}</span> <label>Firstname</label>
+						<input type="text" name="user.firstname"
+							value="${flash['user.firstname']}" />
+					</p>
+					<p class="field">
+
+						<span class="error">#{error 'user.lastname' /}</span> <label>Lastname</label>
+						<input type="text" name="user.lastname"
+							value="${flash['user.lastname']}" />
+					</p>
+					<p class="field">
+						<span class="error">#{error 'user.email' /}</span> <label>Email</label>
+						<input type="text" name="user.email"
+							value="${flash['user.email']}" />
+					</p>
+					<input type="submit" name="create" value="Register" />
+				</form>
+			</div>
+		</div>
