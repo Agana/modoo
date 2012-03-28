@@ -27,6 +27,10 @@ public class EmployeeController extends Controller {
         // employee
     	System.out.println(first_name);
         Employee employee = new Employee(first_name, middle_name, last_name, sex, employeetypeid, email, date_hired, date_fired);
+        if (session.get("user") == null) {
+			Authenticate.login();
+		}
+        employee.createdBy = Authenticate.getLoggedInUser();
         employee.save();
         EmployeeController.loadEmployees();
     }
