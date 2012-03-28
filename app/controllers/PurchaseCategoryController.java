@@ -14,7 +14,6 @@ import models.*;
 
 public class PurchaseCategoryController extends Controller {
 
-	static User dummy = new User("a", "a", 1, "admin").save();
 	
     public static void loadCategories() {
     	List<RegularExpenseItem> regulars = RegularExpenseItem.findAll();
@@ -27,7 +26,8 @@ public class PurchaseCategoryController extends Controller {
     	//TODO how do we take items from a dropdown strings or id?
     	System.out.println(categoryName);
     	
-        ExpenseCategory category = new ExpenseCategory(categoryName, dummy).save();
+        ExpenseCategory category = new ExpenseCategory(categoryName);
+        category.save();
         PurchaseCategoryController.loadCategories();
     }
     

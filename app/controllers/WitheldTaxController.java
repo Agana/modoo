@@ -18,7 +18,9 @@ public class WitheldTaxController extends Controller {
 	
 	public static void newWitheldTax(float totalAmount, float percentage){
 		Date year = new Date();
-		WithHeldTax witheldTax = new WithHeldTax(totalAmount, percentage, year).save();
+		WithHeldTax witheldTax = new WithHeldTax(totalAmount, percentage, year);
+		witheldTax.createdBy = Authenticate.getLoggedInUser();
+		witheldTax.save();
 		WitheldTaxController.loadWitheldTaxes();
 	}
 

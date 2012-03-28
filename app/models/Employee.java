@@ -24,11 +24,12 @@ public class Employee extends Model {
 	public EmployeeType type;
 	@ManyToOne
 	public User createdBy;
+	
+	public float salary;
 
 	public Employee(@Required String first_name, String middle_name,
 			@Required String last_name, @Required String sex,
-			@Required long employeeTypeId, Date date_hired, Date date_fired,
-			@Required User user) {
+			@Required long employeeTypeId, Date date_hired, Date date_fired) {
 
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -37,7 +38,6 @@ public class Employee extends Model {
 		this.type = EmployeeType.findById(employeeTypeId);
 		this.date_hired = date_hired;
 		this.date_fired = date_fired;
-		this.createdBy = user;
 	}
 
 	public void setDateHired(Date dateHired) {

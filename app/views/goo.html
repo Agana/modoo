@@ -23,3 +23,20 @@
     );
     
 </script>
+
+
+<form class="form-inline"
+						action="@{PaySlipController.newPaySlip()}" , method="POST">
+						
+						Staff Categories
+						<select class="input-medium" name="employeeTypeId"> 
+							#{list
+							items:employeeTypes, as:"empType"}
+							<option value="${empType.id}">${empType.name}</option> #{/list}
+						</select> 
+						
+						<input class="btn btn-success" id="submit" type="submit" /> <br/>
+						
+					
+						
+						</form>

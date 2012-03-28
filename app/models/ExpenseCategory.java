@@ -10,7 +10,7 @@ public class ExpenseCategory extends Model {
 
 	@Column(unique=true)
 	public String categoryName;
-	@OneToOne
+	@ManyToOne
 	public User created_by;
 	
 	//@OneToMany(mappedBy = "item_category")
@@ -20,9 +20,8 @@ public class ExpenseCategory extends Model {
 	public List<Budget> budget;
 
 
-	public ExpenseCategory(String categoryName, User createdBy) {
+	public ExpenseCategory(String categoryName) {
 		this.categoryName = categoryName;
-		this.created_by = createdBy;
 	}
 
 	@Override

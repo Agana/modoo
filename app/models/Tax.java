@@ -12,12 +12,12 @@ public class Tax extends Model {
 
     public String taxName;
     
-    @OneToOne
+    @ManyToOne
     public User createdBy;
     
     public float percentage;
 
-    public Tax(String taxName, float percentage, User createdBy) {
+    public Tax(String taxName, float percentage) {
         this.taxName = taxName;
         this.createdBy = createdBy;
         this.percentage = percentage;

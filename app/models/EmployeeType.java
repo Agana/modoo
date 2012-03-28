@@ -14,14 +14,14 @@ public class EmployeeType extends Model {
     public List<Employee> employees;
     @OneToMany
     public List<Tax> employeeTaxes;
-    @OneToOne
+    @ManyToOne
     public User createdBy;
     
-    public float salary;
+    public float preTaxSalary;
 
-    public EmployeeType(String name,long[] employeetaxid,User createdBy) {
+    public EmployeeType(String name,long[] employeetaxid, float preTaxSalary) {
         this.name = name;
-        this.createdBy = createdBy;
+        this.preTaxSalary = preTaxSalary;
         for (long i:employeetaxid){
         	Tax tax = Tax.findById(i);
         	this.employeeTaxes.add(tax);

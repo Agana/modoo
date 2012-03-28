@@ -12,6 +12,9 @@ public class WithHeldTax extends Model {
 	public float totalAmount;
 	public float percentage;
 	public Date year;
+	
+	@ManyToOne
+	public User createdBy;
 
 	public WithHeldTax(float totalAmount, float percentage, Date year) {
 		this.totalAmount = totalAmount;

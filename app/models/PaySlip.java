@@ -14,10 +14,10 @@ public class PaySlip extends Model {
 	public Employee recepient;
 
 	public Date issueDate;
-	public float preTaxAmount;
+	public float preTaxSalary;
 	public float afterTaxAmount;
-	public int year;
-	public String thisMonth;
+	public String year;
+	public String month;
 
 	@ManyToOne
 	public EmployeeType recepientType; // a payslip is issued for each employee
@@ -26,30 +26,41 @@ public class PaySlip extends Model {
 	@OneToMany
 	public List<Tax> taxes;
 
-	public PaySlip(Employee payee) { // create a payslip for a recepient
+	
+	public float totalTax = 0;
+	
+	public PaySlip(Employee payee, String year, String month) { // create a payslip for a recepient
 		recepient = payee;
 		List<Tax> taxes = recepient.type.employeeTaxes;
-		float totalTax = 0;
+		this.preTaxSalary = recepient.type.preTaxSalary;
+		this.recepientType = recepient.type;
+		this.year = year;
+		this.month = month;
+		this.issueDate = new Date();
 
 		for (Tax t : taxes) { // look through all this employee's taxes
-			float tmp = (t.percentage / 100) * recepient.type.salary;
-			totalTax += tmp; // total taxes due on this employee
+			float tmp = (t.percentage / 100) * recepient.type.preTaxSalary;
+			this.totalTax += tmp; // total taxes due on this employee
+			
 		}
+		
+		this.afterTaxAmount = this.preTaxSalary - this.totalTax;
+		
 		System.out.println(totalTax);
 
 	}
 
-	public PaySlip(EmployeeType type, int year, String thisMonth) {
+	public PaySlip(EmployeeType type) {
 
 		this.year = year;
-		this.thisMonth = thisMonth;
+		this.month = month;
 		recepientType = type;
 
 		List<Tax> taxes = recepientType.employeeTaxes;
 		float totalTax = 0;
 
 		for (Tax t : taxes) {
-			float tmp = (t.percentage / 100) * recepientType.salary;
+			float tmp = (t.percentage / 100) * recepientType.preTaxSalary;
 		}
 		System.out.println("total tax on this employee type is : " + totalTax);
 

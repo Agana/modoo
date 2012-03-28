@@ -20,12 +20,11 @@ public class Purchase extends Model {
     public User createdBy;
     
 
-    public Purchase(RegularExpenseItem item, float amount, Supplier supplier, Date purchaseDate, User user) {
+    public Purchase(RegularExpenseItem item, float amount, Supplier supplier, Date purchaseDate) {
         this.regular_item = item;
         this.amount = amount;
         this.supplier = supplier;
         this.purchaseDate = purchaseDate;
-        this.createdBy = user;
     }
 
     @Override

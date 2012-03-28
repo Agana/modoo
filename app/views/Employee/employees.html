@@ -123,7 +123,7 @@
 								<td>${employee.sex}</td>
 								<td>${employee.type}</td>
 								<td>${employee.date_hired.format("dd-MM-yy")}</td>
-								<td>${employee.date_fired.format("dd-MM-yy")}</td>
+								<td>${employee?.date_fired?.format("dd-MM-yy")}</td>
 								<td style="text-align:center;"><input type="checkbox" name="employeeid[]" value="${employee.id}"/></td>
 							</tr>
 							#{/list}

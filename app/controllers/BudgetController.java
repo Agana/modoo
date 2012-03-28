@@ -19,9 +19,9 @@ public class BudgetController extends Controller {
 	}
 	
 	public static void newBudget(float budget,Date budget_date,long expenseCat){
-		User createdBy = User.findById(new Long(1));
 		ExpenseCategory expenseCatobj = ExpenseCategory.findById(expenseCat);
-		Budget budgetObj = new Budget(budget,budget_date,expenseCatobj, createdBy).save();
+		Budget budgetObj = new Budget(budget,budget_date,expenseCatobj);
+		budgetObj.save();
 		BudgetController.loadBudgets();
 	}
 	

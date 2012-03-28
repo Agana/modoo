@@ -11,7 +11,6 @@ import models.*;
 
 public class PurchaseController extends Controller {
 
-	static User dummy = new User("a", "a", 1, "admin").save();
 
 	public static void index() {
 		render();
@@ -55,9 +54,10 @@ public class PurchaseController extends Controller {
 		if (amount <= budget.budgetAmount) {
 
 			Purchase purchase = new Purchase(expCat, amount, supplier,
-					purchaseDate, dummy);
+					purchaseDate);
 			purchase.amountPaid = amountPaid;
 			purchase.amountWitheld = amountWitheld;
+			purchase.createdBy = Authenticate.getLoggedInUser();
 
 			purchase.save();
 

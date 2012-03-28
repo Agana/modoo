@@ -26,8 +26,8 @@ public class RegularPurchaseController extends Controller {
 
     public static void createRegularPurchase(String name, long categoryids) {
         ExpenseCategory expenseCat = ExpenseCategory.findById(categoryids);
-        User user = User.findById(new Long(1));
-        RegularExpenseItem item = new RegularExpenseItem(name,expenseCat,user);
+        RegularExpenseItem item = new RegularExpenseItem(name,expenseCat);
+        item.created_by = Authenticate.getLoggedInUser();
         item.save();
         RegularPurchaseController.loadRegularPurchases();
     }

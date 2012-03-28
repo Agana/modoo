@@ -17,10 +17,9 @@ public class Supplier extends Model {
     
     public String location;
     
-    public Supplier(String supplerName, String location,User createdby) {
+    public Supplier(String supplerName, String location) {
         this.supplierName = supplerName;
         this.location=location;
-        this.createdBy = createdby;
     }
     
     @Override

@@ -11,7 +11,6 @@ import models.*;
 
 public class EmployeeController extends Controller {
 
-    static User dummy = new User("a", "a", 1, "admin").save();
 
     public static void loadEmployees() {// load employees management page
     	//list of the types of employees that the organization has
@@ -26,8 +25,8 @@ public class EmployeeController extends Controller {
             String sex, long employeetypeid, Date date_hired, Date date_fired, User createdBy) { // new
         // employee
     	System.out.println(first_name);
-        Employee employee = new Employee(first_name, middle_name, last_name, sex, employeetypeid,date_hired, date_fired, dummy).save();
-        System.out.println(employee.first_name);
+        Employee employee = new Employee(first_name, middle_name, last_name, sex, employeetypeid,date_hired, date_fired);
+        employee.save();
         EmployeeController.loadEmployees();
     }
 

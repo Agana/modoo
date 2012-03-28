@@ -19,8 +19,9 @@ public class SupplierController extends Controller {
     }
     
     public static void newSupplier(String supplierName, String location){
-    	User user = User.findById(new Long(1));
-    	Supplier supplier = new Supplier(supplierName, location,user).save();
+    	Supplier supplier = new Supplier(supplierName, location);
+    	supplier.createdBy = Authenticate.getLoggedInUser();
+    	supplier.save();
     	SupplierController.loadSuppliers();
     }
 

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class RegularExpenseItem extends Model {
 
     public String item_name;
-    @OneToOne
+    @ManyToOne
     public User created_by;
     @OneToMany
     public List<Purchase> purchases;
@@ -20,10 +20,9 @@ public class RegularExpenseItem extends Model {
 //  public Supplier supplier;
     
 
-    public RegularExpenseItem(String item_name,ExpenseCategory expenseCategory, User createdBy) {
+    public RegularExpenseItem(String item_name,ExpenseCategory expenseCategory) {
         this.item_name = item_name;
         this.item_category = expenseCategory;
-        this.created_by = createdBy;
     }
     
     @Override

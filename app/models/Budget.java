@@ -18,10 +18,9 @@ public class Budget extends Model {
     public User createdBy;
     public Date budgetPeriod;
     
-    public Budget(float budgetAmount,Date budgetPeriod,ExpenseCategory expenseCat, User createdBy){
+    public Budget(float budgetAmount,Date budgetPeriod,ExpenseCategory expenseCat){
     	this.budgetAmount = budgetAmount;
     	this.budgetPeriod = budgetPeriod;
-    	this.createdBy = createdBy;
     	this.category = expenseCat;
     }
 

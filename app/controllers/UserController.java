@@ -15,20 +15,10 @@ public class UserController extends Controller {
         render("User/users.html");
     }
 
-    public static void newUser(String username, String password,
-            int employeeId, String authorization) {
-        User user = new User(username, password, employeeId, authorization).save();
-        renderJSON(user);
-    }
+//    public static void newUser(String username, String password,
+//            int employeeId, String authorization) {
+//        User user = new User(username, password, employeeId).save();
+//        renderJSON(user);
+//    }
 
-    public static void changeStatus(Long id, boolean fired) {
-        User user = User.findById(id);
-        if (fired) {
-            user.authorization = "notAdmin";
-        } else {
-            user.authorization = "admin";
-        }
-        user.save();
-        renderJSON(user);
-    }
 }

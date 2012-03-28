@@ -1,0 +1,52 @@
+#{extends 'main.html'/} #{set title:'Employees'/} #{header /}
+#{bootstrap /} #{set 'moreScripts'}
+<script type="text/javascript">
+	$(function() {
+		$("#datepicker").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+		$("#datepicker-1").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+	});
+</script>
+#{/set} #{set 'moreStyles'}
+<style type="text/css">
+label {
+	width: 200px;
+}
+</style>
+#{/set}
+
+<div class="wrapper col2">
+	<div id="topbar">
+		<div id="topnav"></div>
+		<br class="clear" />
+	</div>
+</div>
+<div class="wrapper col3">
+	<div class="content">
+		#{sidebar /}
+
+
+		<div id="content">
+			<h1>Login</h1>
+			<p>To login to ePlay, complete the form below and click Login!</p>
+			<p>
+				If you have not registered yet, <a href="@{Authenticate.register()}">
+					click here to sign up now</a>.
+			</p>
+			<div id="loginForm">
+				<form action="@{Authenticate.doLogin()}" method="POST">
+					<p class="field">
+						<span class="error">#{error 'username' /}</span> <label>Username</label>
+						<input type="text" name="username" value="${flash['username']}" />
+					</p>
+					<p class="field">
+						<span class="error">#{error 'password' /}</span> <label>Password</label>
+						<input type="password" name="password" />
+					</p>
+					<input type="submit" name="create" value="Login" />
+				</form>
+			</div>
+		</div>
