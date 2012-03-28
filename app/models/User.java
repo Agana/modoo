@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 @Entity
 public class User extends Model {
+	
+	@Required
+	public long employeeId;
 	@Required
 	@MinSize(6)
 	public String username;
@@ -22,7 +25,18 @@ public class User extends Model {
 	public String firstname;
 	@Required
 	public String lastname;
+	
+	
 
+	public User(long employeeId, String username, String email, String password, String firstname, String lastname){
+		this.employeeId = employeeId;
+		this.username=username;
+		this.email=email;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 		this.passwordHash = Codec.hexMD5(password);

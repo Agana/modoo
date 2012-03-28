@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 
+import play.data.validation.Email;
 import play.mvc.*;
 
 import java.io.File;
@@ -22,10 +23,10 @@ public class EmployeeController extends Controller {
     }
 
     public static void createEmployee(String first_name, String middle_name, String last_name,
-            String sex, long employeetypeid, Date date_hired, Date date_fired, User createdBy) { // new
+            String sex, long employeetypeid, String email, Date date_hired, Date date_fired) { // new
         // employee
     	System.out.println(first_name);
-        Employee employee = new Employee(first_name, middle_name, last_name, sex, employeetypeid,date_hired, date_fired);
+        Employee employee = new Employee(first_name, middle_name, last_name, sex, employeetypeid, email, date_hired, date_fired);
         employee.save();
         EmployeeController.loadEmployees();
     }

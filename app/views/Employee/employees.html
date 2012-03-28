@@ -61,6 +61,14 @@
                                 <input class="input-xlarge focused" id="lname" type="text" name="last_name" />
                             </div>
                         </div>
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="lname">Email address</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="text" name="email" />
+                            </div>
+                        </div>
+                        
                         <div class = "control-group">
                             <label class="control-label" for="sex">Sex</label>
                             <div class="controls">
@@ -79,7 +87,8 @@
                                 </select>
                             </div>
                         </div>
-
+						
+                        
                         <div class = "control-group">
                             <label class="control-label" for="datehired">Date Hired</label>
                             <div class="controls">
@@ -111,6 +120,7 @@
 								<th>Name</th>
 								<th>Gender</th>
 								<th>Employee Type</th>
+								<th>Email</th>
 								<th>Date Hired</th>
 								<th>Date Fired</th>
 								<th>Delete</th>					
@@ -122,6 +132,7 @@
 								<td>${employee}</td>
 								<td>${employee.sex}</td>
 								<td>${employee.type}</td>
+								<td>${employee.email}</td>
 								<td>${employee.date_hired.format("dd-MM-yy")}</td>
 								<td>${employee?.date_fired?.format("dd-MM-yy")}</td>
 								<td style="text-align:center;"><input type="checkbox" name="employeeid[]" value="${employee.id}"/></td>

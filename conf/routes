@@ -4,8 +4,7 @@
 
 # Home page
 GET     /                                       Application.index
-GET		/signup									Authenticate.register
-POST	/signup									Authenticate.doRegister
+
 
 
 

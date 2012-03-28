@@ -8,6 +8,9 @@ import org.hibernate.dialect.FirebirdDialect;
 import play.db.jpa.Model;
 import play.*;
 import java.util.*;
+
+import play.data.validation.Email;
+import play.data.validation.Password;
 import play.data.validation.Required;
 
 @Entity
@@ -19,6 +22,7 @@ public class Employee extends Model {
 	public String sex;
 	public Date date_hired;
 	public Date date_fired;
+	
 	// public Date registration_date;
 	@ManyToOne
 	public EmployeeType type;
@@ -26,16 +30,26 @@ public class Employee extends Model {
 	public User createdBy;
 	
 	public float salary;
+	
+	//user credentials 
+	public String username;
+	@Password
+	@Transient
+	public String password;
+	@Required
+	@Email
+	public String email;
 
 	public Employee(@Required String first_name, String middle_name,
 			@Required String last_name, @Required String sex,
-			@Required long employeeTypeId, Date date_hired, Date date_fired) {
+			@Required long employeeTypeId, String email, Date date_hired, Date date_fired) {
 
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.middle_name = middle_name;
 		this.sex = sex;
 		this.type = EmployeeType.findById(employeeTypeId);
+		this.email = email;
 		this.date_hired = date_hired;
 		this.date_fired = date_fired;
 	}

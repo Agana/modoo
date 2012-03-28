@@ -29,6 +29,97 @@ label {
 		#{sidebar /}
 
 
+
+		<div
+			style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+			<div id="tab">
+				<ul>
+					<li><a href="#tab-1">Add Categories</a>
+					</li>
+					<li><a href="#tab-2">Show Categories</a>
+					</li>
+					<!-- <li><a href="#tab-3">Edit Categories</a></li>-->
+				</ul>
+
+				<div id="tab-1">
+
+					<form class="form-horizontal" action="@{Authenticate.takeRegistrationDetails()}"
+						method="POST">
+
+						<div class="control-group">
+							<label class="control-label" for="fname">Select Employee</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="fname"
+									name="employeeId"> #{list items:employees,
+									as:"employee"}
+									<option value="${employee.id}">${employee}</option> #{/list}
+								</select>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="fname">Username</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="fname"
+									name="username" />
+							</div>
+						</div>
+
+
+						<div class="control-group">
+							<label class="control-label" for="fname">Password</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="fname"
+									name="password" />
+							</div>
+						</div>
+
+						
+						
+						
+							
+							
+
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />
+					</form>
+
+				</div>
+
+				<div id="tab-2">
+					<form action="@{PurchaseCategoryController.deleteCategory()}"
+						method="post">
+						#{if flash.error}
+						<p class="error">${flash.error}</p>
+						#{/if}
+						<table>
+							<thead>
+								<th>Categories</th>
+								<th>Delete</th>
+							</thead>
+							<tbody>
+								#{list items:expenseCats, as:"expenseCat"}
+								<tr>
+									<td>${expenseCat.categoryName}</td>
+									<td style="text-align: center;"><input type="checkbox"
+										name="categoryid[]" value="${expenseCat.id}" />
+									</td>
+								</tr>
+								#{/list}
+							</tbody>
+						</table>
+
+						<input class="btn btn-success" style="margin-left: 500px;"
+							id="submit" type="submit" />
+
+					</form>
+				</div>
+
+				<!-- 
+
+
+
+
 		<div id="content">
 			<h1>Register User</h1>
 			<p>To register for ePlay, just complete the form below and click
@@ -46,7 +137,7 @@ label {
 					</p>
 					<p class="field">
 						<span class="error">#{error 'user.firstname' /}</span> <label>Firstname</label>
-						<input type="text" name="user.firstname"
+						<input type="hidden" name="user.firstname"
 							value="${flash['user.firstname']}" />
 					</p>
 					<p class="field">
@@ -64,3 +155,5 @@ label {
 				</form>
 			</div>
 		</div>
+		
+		 -->

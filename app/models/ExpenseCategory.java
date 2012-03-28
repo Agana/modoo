@@ -16,7 +16,7 @@ public class ExpenseCategory extends Model {
 	//@OneToMany(mappedBy = "item_category")
 //	public List<RegularExpenseItem> regular_items;
 	
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy="category", cascade=CascadeType.ALL)
 	public List<Budget> budget;
 
 
