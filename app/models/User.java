@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class User extends Model {
 	
 	@Required
-	public long employeeId;
+	@OneToOne
+	public Employee emp;
 	@Required
 	@MinSize(6)
 	public String username;
@@ -28,8 +29,8 @@ public class User extends Model {
 	
 	
 
-	public User(long employeeId, String username, String email, String password, String firstname, String lastname){
-		this.employeeId = employeeId;
+	public User(Employee employee, String username, String email, String password, String firstname, String lastname){
+		this.emp = employee;
 		this.username=username;
 		this.email=email;
 		this.password = password;

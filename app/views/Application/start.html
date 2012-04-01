@@ -1,19 +1,117 @@
 #{extends 'main.html'/}
-#{set title:'Home'/}
+#{set title:'Employees'/}
 
 #{header /}
+#{bootstrap /}
+
+#{set 'moreScripts'}
+	<script type="text/javascript">
+    
+    $(function(){
+        $("#datepicker").datepicker({dateFormat:'yy-mm-dd'});
+        $("#datepicker-1").datepicker({dateFormat:'yy-mm-dd'});
+    });
+    </script>
+#{/set}
+
+#{set 'moreStyles'}
+<style type="text/css">
+    label{
+        width: 200px;
+    }
+</style>
+#{/set}
 <div class="wrapper col2">
-  <div id="topbar">
-    <div id="topnav">
+    <div id="topbar">
+        <div id="topnav">
+        </div>
+        <br class="clear" />
     </div>
-    <br class="clear" />
-  </div>
 </div>
 <div class="wrapper col3">
-<div class="content">
-#{sidebar /}
+    <div class="content">
+  
 
+        <div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+            <div id="tab">
+                <ul>
+                    <li><a href="#tab-1">First User</a></li>
+                </ul>
+                <div id="tab-1">
+                    <form class="form-horizontal" action="@{EmployeeController.createFirstEmployee()}", method="POST">
+                        <div class = "control-group">
+                            <label class="control-label" for="fname">First Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="fname" name="first_name" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="mname">Middle Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="mname" type="text" name="middle_name" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="lname">Last Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="text" name="last_name" />
+                            </div>
+                        </div>
+                        
+                         <div class = "control-group">
+                            <label class="control-label" for="lname">Username</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="text" name="username" />
+                            </div>
+                        </div>
+                         <div class = "control-group">
+                            <label class="control-label" for="lname">Password</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="password" name="password" type="password"/>
+                            </div>
+                        </div>
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="lname">Email address</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="text" name="email" />
+                            </div>
+                        </div>
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="sex">Sex</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" name="sex" type="checkbox" value="Male" />&nbsp;Male<br/>
+                                <input class="input-xlarge focused" name="sex" type="checkbox" value="Female" />&nbsp;Female 
+                            </div>
+                        </div>
+
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="datehired">Date Hired</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" type="text" name="date_hired" id="datepicker"/>
+                            </div>
+                        </div>
+                        <div class = "control-group">
+                            <label class="control-label" for="datefired">Date Fired</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" type="text" name="date_fired" id="datepicker-1"/>
+                            </div>
+                        </div>
+
+                       <input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />                                              
+                    </form>
+
+                </div>
+                
+            </div>
+        </div>
 </div>
+    </div>
 
 </div>
 #{footer /}

@@ -1,132 +1,215 @@
-#{extends 'main.html'/} #{set title:'Staff Categories'/}  #{header /} #{bootstrap /}
-#{set 'moreScripts'}
+#{extends 'main.html'/} #{set title:'Staff Categories'/} #{header /}
+#{bootstrap /} #{set 'moreScripts'}
 <script type="text/javascript">
-    
-    $(function(){
-        $("#datepicker").datepicker({dateFormat:'yy-mm-dd'});
-        $("#datepicker-1").datepicker({dateFormat:'yy-mm-dd'});
-    });
-    </script>
-#{/set}
-
-#{set 'moreStyles'}
+	$(function() {
+		$("#datepicker").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+		$("#datepicker-1").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+	});
+</script>
+#{/set} #{set 'moreStyles'}
 <style type="text/css">
-    label{
-        width: 200px;
-    }
+label {
+	width: 200px;
+}
 </style>
 #{/set}
 
 <div class="wrapper col2">
-  <div id="topbar">
-    <div id="topnav">
-    </div>
-    <br class="clear" />
-  </div>
+	<div id="topbar">
+		<div id="topnav"></div>
+		<br class="clear" />
+	</div>
 </div>
 <div class="wrapper col3">
-<div class="content">
-#{sidebar /}
+	<div class="content">
+		#{sidebar /}
 
-	<div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
-		<div id="tab">
-			<ul>
-				<li><a href="#tab-1">Add Purchase</a></li>
-				<li><a href="#tab-2">Show Purchase</a></li>
-				<!-- <li><a href="#tab-3">Edit Purchase</a></li> -->
-			</ul>
-			<div id="tab-1">
-                    <form class="form-horizontal" action="@{PurchaseController.newPurchase()}", method="POST">
-                    
-                    #{if flash.error}
+		<div
+			style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+			<div id="tab">
+				<ul>
+					<li><a href="#tab-1">Add Purchase</a>
+					</li>
+					<li><a href="#tab-2">View Purchase</a>
+					</li>
+					<!--  <li><a href="#tab-3">Edit Purchase</a></li> --> 
+				</ul>
+				<div id="tab-1">
+					<form class="form-horizontal"
+						action="@{PurchaseController.newPurchase()}" method="POST"
+						enctype="multipart/form-data">
+
+						#{if flash.error}
 						<p class="error">${flash.error}</p>
-					#{/if}
-					
-                        <div class = "control-group">
-                            <label class="control-label" for="fname">Purchase Item&nbsp;</label>
-                            <div class="controls">
-                             <select class="input-xlarge focused" name="regularItemId">
-                                   #{list items:regulars, as:"regular"}
-                                    <option value="${regular.id}">${regular.item_name}</option>
-                                    #{/list}
-                                </select>
-                               </div>
-                        </div>
-                        
-                        <div class = "control-group">
-                            <label class="control-label" for="fname">Supplier</label>
-                            <div class="controls">
-                                <select class="input-xlarge focused" name="supplierId">
-                                   #{list items:suppliers, as:"supplier"}
-                                    <option value="${supplier.id}">${supplier.supplierName}</option>
-                                    #{/list}
-                                </select>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class = "control-group">
-                            <label class="control-label" for="mname">Amount</label>
-                            <div class="controls">
-                                <input class="input-xlarge focused" id="mname" type="text" name="amount" />
-                            </div>
-                        </div>
+						#{/if}
 
-                        <div class = "control-group">
-                            <label class="control-label" for="datefired">Date</label>
-                            <div class="controls">
-                                <input class="input-xlarge focused" type="text" name="purchaseDate" id="datepicker-1"/>
-                            </div>
-                        </div>
+						<div class="control-group">
+							<label class="control-label" for="fname">Purchase
+								Item&nbsp;</label>
+							<div class="controls">
+								<select class="input-xlarge focused" name="regularItemId">
+									#{list items:regulars, as:"regular"}
+									<option value="${regular.id}">${regular.item_name}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
 
-                       <input class="btn btn-success" style="margin-left: 360px;"
-							id="submit" type="submit" />                                              
-                    </form>
+						<div class="control-group">
+							<label class="control-label" for="fname">Supplier</label>
+							<div class="controls">
+								<select class="input-xlarge focused" name="supplierId">
+									#{list items:suppliers, as:"supplier"}
+									<option value="${supplier.id}">${supplier.supplierName}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
 
-                </div>
-                
-			<div id="tab-2">
-				<form action="@{PurchaseController.deletePurchase()}" method="post">
-				#{if flash.error}
-					<p class="error">${flash.error}</p>
-				#{/if}
-				<table>
-					<thead>
-						<tr>
-							<th>Item</th>
-							<th>Cost</th>
-							<th>Amount Paid</th>
-							<th>Amount With Held</th>
-							<th>Supplier</th>
-							<th>Delete</th>
-						</tr>
-					</thead>
-					<tbody>
-						#{list items:purchases, as:"purchase"}
-						<tr>
-							<td>${purchase.regular_item}</td>
-							<td>${purchase.amount}</td>
-							<td>${purchase.amountPaid}</td>
-							<td>${purchase.amountWitheld}</td>
-							<td>${purchase.supplier}</td>
-							<td style="text-align:center;"><input type="checkbox" name="purchaseid[]" value="${purchase.id}"/></td>
-						</tr>
-						#{/list}
-					</tbody>
-				</table>
-				
-				<input class="btn btn-success" style="margin-left: 578px;" id="submit" type="submit" />    
-				
-				</form>
-			</div>
-			
-			<!-- <div id="tab-3">
-				Edit Purchases
+
+						<div class="control-group">
+							<label class="control-label" for="mname">Amount</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="mname" type="text"
+									name="amount" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="datefired">Date</label>
+							<div class="controls">
+								<input class="input-xlarge focused" type="text"
+									name="purchaseDate" id="datepicker-1" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="datefired">Upload
+								Receipt</label>
+							<div class="controls">
+								<input type="text" name="recTitle" /> <input type="file"
+									id="photo" name="photo" />
+							</div>
+						</div>
+
+
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />
+					</form>
+
+				</div>
+
+				<div id="tab-2">
+					<form action="@{PurchaseController.deletePurchase()}" method="post">
+						#{if flash.error}
+						<p class="error">${flash.error}</p>
+						#{/if}
+						<table>
+							<thead>
+								<tr>
+									<th>Item</th>
+									<th>Cost</th>
+									<th>Amount Paid</th>
+									<th>Amount With Held</th>
+									<th>Supplier</th>
+									<th>Receipt</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								#{list items:purchases, as:"purchase"}
+								<tr>
+									<td>${purchase.regular_item}</td>
+									<td>${purchase.amount}</td>
+									<td>${purchase.amountPaid}</td>
+									<td>${purchase.amountWitheld}</td>
+									<td>${purchase.supplier}</td>
+									<td></td>
+									<td style="text-align: center;"><input type="checkbox"
+										name="purchaseid[]" value="${purchase.id}" />
+									</td>
+								</tr>
+								#{/list}
+							</tbody>
+						</table>
+
+						<input class="btn btn-success" style="margin-left: 578px;"
+							id="submit" type="submit" />
+
+					</form>
+				</div>
+
+				<!-- <div id="tab-3">
+				<form class="form-horizontal"
+						action="@{PurchaseController.newPurchase()}" method="POST"
+						enctype="multipart/form-data">
+
+						#{if flash.error}
+						<p class="error">${flash.error}</p>
+						#{/if}
+
+						<div class="control-group">
+							<label class="control-label" for="fname">Purchase
+								Item&nbsp;</label>
+							<div class="controls">
+								<select class="input-xlarge focused" name="regularItemId">
+									#{list items:regulars, as:"regular"}
+									<option value="${regular.id}">${regular.item_name}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="fname">Supplier</label>
+							<div class="controls">
+								<select class="input-xlarge focused" name="supplierId">
+									#{list items:suppliers, as:"supplier"}
+									<option value="${supplier.id}">${supplier.supplierName}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+
+
+						<div class="control-group">
+							<label class="control-label" for="mname">Amount</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="mname" type="text"
+									name="amount" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="datefired">Date</label>
+							<div class="controls">
+								<input class="input-xlarge focused" type="text"
+									name="purchaseDate" id="datepicker-1" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="datefired">Upload
+								Receipt</label>
+							<div class="controls">
+								<input type="text" name="recTitle" /> <input type="file"
+									id="photo" name="photo" />
+							</div>
+						</div>
+
+
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />
+					</form>
 			</div> -->
+			</div>
 		</div>
+
 	</div>
-	
-</div>
 
 </div>
 #{footer /}

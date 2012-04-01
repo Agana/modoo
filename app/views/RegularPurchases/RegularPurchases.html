@@ -39,8 +39,8 @@
 					</li>
 					<li><a href="#tab-2">Show Regular Purchases</a>
 					</li>
-					<!-- <li><a href="#tab-3">Edit Regular Purchases</a> 
-					</li>-->
+					<li><a href="#tab-3">Edit Regular Purchases</a></li>
+					
 				</ul>
 				
 				<div id="tab-1">
@@ -58,7 +58,7 @@
 						<div class="control-group">
 							<label class="control-label" for="categoryid">Category</label>
 							<div class="controls">
-								<select class="input-xlarge focused" id="categoryid" name="categoryids">
+								<select class="input-xlarge focused" id="categoryid" name="categoryid">
 									<option value="-">-- Expense Category --</option>
 									#{list items:expenseCats, as:'category'}
 									<option value=${category.id}>${category.categoryName}</option>
@@ -90,7 +90,7 @@
 							#{list items:regExpenseItems, as:"expenseitem"}
 							<tr>
 								<td>${expenseitem.item_name}</td>
-								<td>${expenseitem.item_category}</td>
+								<td>${expenseitem.category_name}</td>
 								<td style="text-align:center;"><input type="checkbox" name="expenseid[]" value="${expenseitem.id}"/></td>
 							</tr>
 							#{/list}
@@ -102,7 +102,33 @@
 					</form>
 				</div>
 				
-				<!-- <div id="tab-3">Edit Regular Purchases</div> -->
+				<div id="tab-3"><form class="form-horizontal"
+						action="@{RegularPurchaseController.editRegularPurchase()}" , method="POST">
+						
+						<div class="control-group">
+							<label class="control-label" for="fname">Select Item</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="fname" name="regularpurchaseid" >
+									#{list items:regExpenseItems, as:"regExpenseItem"}
+									<option value="${regExpenseItem.id}">${regExpenseItem}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="name">Expense Name</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="name" type="text"
+									name="name" />
+							</div>
+						</div>
+
+						
+
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />
+					</form></div> 
 			</div>
 		</div>
 

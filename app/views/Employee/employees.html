@@ -36,8 +36,8 @@
             <div id="tab">
                 <ul>
                     <li><a href="#tab-1">Add Employee</a></li>
-                    <li><a href="#tab-2">Show Employees</a></li>
-                  <!--   <li><a href="#tab-3">Edit Employee</a></li> -->
+                    <li><a href="#tab-2">View Employees</a></li>
+                  <li><a href="#tab-3">Edit Employee</a></li>
                 </ul>
                 <div id="tab-1">
                     <form class="form-horizontal" action="@{EmployeeController.createEmployee()}", method="POST">
@@ -133,7 +133,7 @@
 								<td>${employee.sex}</td>
 								<td>${employee.type}</td>
 								<td>${employee.email}</td>
-								<td>${employee.date_hired.format("dd-MM-yy")}</td>
+								<td>${employee?.date_hired?.format("dd-MM-yy")}</td>
 								<td>${employee?.date_fired?.format("dd-MM-yy")}</td>
 								<td style="text-align:center;"><input type="checkbox" name="employeeid[]" value="${employee.id}"/></td>
 							</tr>
@@ -147,9 +147,83 @@
                 </div>
                 
                 
-                <!-- <div id="tab-3">
-                    Edit Employees
-                </div> -->
+                <div id="tab-3">
+                    <form class="form-horizontal" action="@{EmployeeController.editEmployee()}", method="POST">
+                    	<div class = "control-group">                     <label class="control-label" for="fname">Select Employee</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="fname" name="employeeid" >
+									#{list items:employees, as:"employee"}
+									<option value="${employee.id}">${employee}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+                        <div class = "control-group">
+                            <label class="control-label" for="fname">First Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="fname" name="first_name" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="mname">Middle Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="mname" type="text" name="middle_name" />
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="lname">Last Name</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="text" name="last_name" />
+                            </div>
+                        </div>
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="lname">Email address</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" id="lname" type="text" name="email" />
+                            </div>
+                        </div>
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="sex">Sex</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" name="sex" type="checkbox" value="Male" />&nbsp;Male<br/>
+                                <input class="input-xlarge focused" name="sex" type="checkbox" value="Female" />&nbsp;Female 
+                            </div>
+                        </div>
+
+                        <div class = "control-group">
+                            <label class="control-label" for="staffcat">Staff Categories</label>
+                            <div class="controls" id="staffcat">
+                                <select class="input-xlarge focused" name="employeetypeid">
+                                	#{list items:empTypes, as:"empType"}
+                                    <option value="${empType.id}">${empType.name}</option>
+                                    #{/list}
+                                </select>
+                            </div>
+                        </div>
+						
+                        
+                        <div class = "control-group">
+                            <label class="control-label" for="datehired">Date Hired</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" type="text" name="date_hired" id="datepicker"/>
+                            </div>
+                        </div>
+                        <div class = "control-group">
+                            <label class="control-label" for="datefired">Date Fired</label>
+                            <div class="controls">
+                                <input class="input-xlarge focused" type="text" name="date_fired" id="datepicker-1"/>
+                            </div>
+                        </div>
+
+                       <input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />                                              
+                    </form>
+
+                </div>
             </div>
         </div>
 

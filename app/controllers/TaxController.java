@@ -19,7 +19,7 @@ public class TaxController extends Controller {
 		render("Tax/taxes.html", taxes);
 	}
 
-	public static void newTax(String taxName, float percentage, User user) { // new
+	public static void newTax(String taxName, float percentage) { // new
 		// employee
 		if (session.get("user") == null) {
 			Authenticate.login();

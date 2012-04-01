@@ -12,17 +12,23 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        String welcome_message = "Welcome to Modoo";
-        List<Employee> employees = Employee.find("order by id desc").from(0).fetch(5);
-        render(employees);
+    	Application.checkEmpty();
     }
 
-    public static void uploadPhoto(String title, File photo) {
-        Receipt receipt = new Receipt(title, photo).save();
-        renderJSON(receipt);
+   
+    
+    public static void checkEmpty(){
+    	List<User> users = User.findAll();
+    	if(users.isEmpty()){
+    		
+        render("Application/start.html");
+    	}
+    	else{
+    		render("Authenticate/login.html");
+    	}
     }
     
     public static void start(){
-        render("Application/start.html");
+    	render("Application/start.html");
     }
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 
+import play.data.validation.Required;
 import play.mvc.*;
 
 import java.io.File;
@@ -17,14 +18,19 @@ public class BudgetController extends Controller {
 		render("Budget/budgets.html", budgets, expenseCats);
 	}
 
-	public static void newBudget(float budget, Date budget_date, long expenseCat) {
+	public static void newBudget(String name, float budget, @Required Date budget_date, @ Required long expenseCat) {
 		if (session.get("user") == null) {
+		Authenticate.login();
+		}
+		
+		
 			ExpenseCategory expenseCatobj = ExpenseCategory
 					.findById(expenseCat);
-			Budget budgetObj = new Budget(budget, budget_date, expenseCatobj);
+			name = expenseCatobj.categoryName;
+			Budget budgetObj = new Budget(name, budget, budget_date, expenseCatobj);
+			budgetObj.createdBy = Authenticate.getLoggedInUser();
 			budgetObj.save();
 			BudgetController.loadBudgets();
-		}
 	}
 
 	public static void deleteBudget(long[] budgetid) {
@@ -42,4 +48,15 @@ public class BudgetController extends Controller {
 			BudgetController.loadBudgets();
 		}
 	}
+	
+	public static void editBudget(long budgetid, float budgetAmount){
+		System.out.println("Budget ID: "+ budgetid);
+    	Budget budget = Budget.findById(budgetid);
+    	System.out.println("Budget Returned: "+ budget.budgetAmount);
+    	budget.budgetAmount = budgetAmount;
+    	budget.lastUpdateBy = Authenticate.getLoggedInUser(); //record who last modified this budget
+    	budget.save();
+    	
+    	BudgetController.loadBudgets();
+    }
 }

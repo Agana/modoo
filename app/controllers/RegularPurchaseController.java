@@ -24,9 +24,10 @@ public class RegularPurchaseController extends Controller {
         render("RegularPurchases/RegularPurchases.html",expenseCats,regExpenseItems);
     }
 
-    public static void createRegularPurchase(String name, long categoryids) {
-        ExpenseCategory expenseCat = ExpenseCategory.findById(categoryids);
-        RegularExpenseItem item = new RegularExpenseItem(name,expenseCat);
+    public static void createRegularPurchase(String name, long categoryid, String category_name) {
+        ExpenseCategory expenseCat = ExpenseCategory.findById(categoryid);
+        category_name = expenseCat.categoryName;
+        RegularExpenseItem item = new RegularExpenseItem(name,expenseCat, category_name);
         item.created_by = Authenticate.getLoggedInUser();
         item.save();
         RegularPurchaseController.loadRegularPurchases();
@@ -45,5 +46,14 @@ public class RegularPurchaseController extends Controller {
     	}finally{
     		RegularPurchaseController.loadRegularPurchases();
     	}
+    }
+    
+    public static void editRegularPurchase(long regularpurchaseid, String name){
+    	RegularExpenseItem reg = RegularExpenseItem.findById(regularpurchaseid);
+    	reg.item_name = name;
+    	reg.item_category.id = reg.item_category.id;
+    	reg.lastUpdatedBy = Authenticate.getLoggedInUser();
+    	reg.save();
+    	RegularPurchaseController.loadRegularPurchases();
     }
 }

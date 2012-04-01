@@ -46,13 +46,10 @@ public class PurchaseCategoryController extends Controller {
     	}
     }
     
-    public static void editCategory(long categoryid,String categoryName){
-//    	Query query =JPA.em().createQuery("Update table ExpenseCategory set categoryName='"+categoryName+"' where" +
-//    			"id = "+categoryid);
-//    	query.executeUpdate();
+	public static void editCategory(long categoryid,String categoryName){
     	ExpenseCategory category = ExpenseCategory.findById(categoryid);
-//    	category.edit("ExpenseCategory", params.all());
     	category.categoryName = categoryName;
+    	category.lastUpdatedBy = Authenticate.getLoggedInUser();
     	category.save();
     	
     	PurchaseCategoryController.loadCategories();

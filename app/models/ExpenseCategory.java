@@ -13,6 +13,9 @@ public class ExpenseCategory extends Model {
 	@ManyToOne
 	public User created_by;
 	
+	@ManyToOne
+	public User lastUpdatedBy;
+	
 	//@OneToMany(mappedBy = "item_category")
 //	public List<RegularExpenseItem> regular_items;
 	

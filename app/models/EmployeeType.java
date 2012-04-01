@@ -7,33 +7,29 @@ import javax.persistence.*;
 
 @Entity
 public class EmployeeType extends Model {
-    //TODO controller for this class
+	// TODO controller for this class
 
-    public String name;
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
-    public List<Employee> employees;
-    @OneToMany
-    public List<Tax> employeeTaxes;
-    @ManyToOne
-    public User createdBy;
-    
-    public float preTaxSalary;
+	public String name;
+	@ManyToOne
+	public User createdBy;
+	@ManyToOne
+	public User lastUpdatedBy;
+	public float preTaxSalary;
+	public float totalTaxPercentage;
+	
+	public EmployeeType(String name, float preTaxSalary,float totalTaxPercentage) {
+		this.name = name;
+		this.preTaxSalary = preTaxSalary;
+		this.totalTaxPercentage = totalTaxPercentage;
+	}
 
-    public EmployeeType(String name,long[] employeetaxid, float preTaxSalary) {
-        this.name = name;
-        this.preTaxSalary = preTaxSalary;
-        for (long i:employeetaxid){
-        	Tax tax = Tax.findById(i);
-        	this.employeeTaxes.add(tax);
-        }
-    }
+	public EmployeeType(String name) {
+		this.name = name;
+	}
 
-    public EmployeeType(String name) {
-        this.name = name;
-    }
-    
-    @Override
-    public String toString(){
-    	return name;
-    }
+	@Override
+	public String toString() {
+		return name;
+	}
+
 }

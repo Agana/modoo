@@ -28,11 +28,34 @@ public class EmployeeTypeController extends Controller {
 		renderJSON(tax.iterator().next().taxName);
 	}
 
-	public static void createEmployeeType(String expenseCatName, long[] taxids, float preTaxSalary) {
-		EmployeeType empType = new EmployeeType(expenseCatName, taxids, preTaxSalary);
-		empType.createdBy = Authenticate.getLoggedInUser();
+	public static void createEmployeeType(String expenseCatName,float preTaxSalary,long[] taxids) {
+		System.out.println(expenseCatName);
+		float totalPercentage=0;
+		System.out.println("Pre tax salary: " + preTaxSalary);
+		if(taxids == null){
+			flash.error("Please enter at least one tax deduction.");
+			EmployeeTypeController.loadEmployeeTypes();
+		}
+		for(long i:taxids){
+			Tax tax = Tax.findById(i);
+			totalPercentage+= tax.percentage;
+		}
+		
+		System.out.println("Total Tax percentage "+totalPercentage);
+		
+		//creating a new EmployeeType
+		EmployeeType empType = new EmployeeType(expenseCatName,preTaxSalary,totalPercentage);
 		empType.save();
+		
 		EmployeeTypeController.loadEmployeeTypes();
+		
+//		EmployeeType empType = new EmployeeType(expenseCatName, preTaxSalary);
+//		empType.createdBy = Authenticate.getLoggedInUser();
+//		for(long i:taxids){
+//			System.out.println(" taxids for Employee Category =>"+i);
+//		}
+//		empType.save();
+//		EmployeeTypeController.loadEmployeeTypes();
 	}
 
 	public static void deleteEmployeeType(long[] empTypeid) {
@@ -48,5 +71,25 @@ public class EmployeeTypeController extends Controller {
 		} finally {
 			EmployeeTypeController.loadEmployeeTypes();
 		}
+	}
+	
+	public static void editEmployeeType(long empTypeid, String expenseCatName,float preTaxSalary,long[] taxids){
+		EmployeeType e = EmployeeType.findById(empTypeid);
+		e.name = expenseCatName;
+		e.preTaxSalary = preTaxSalary;
+		float newTotalPercentage=0;
+		if(taxids == null){
+			flash.error("Please enter at least one tax deduction.");
+			EmployeeTypeController.loadEmployeeTypes();
+		}
+		for(long i:taxids){
+			Tax tax = Tax.findById(i);
+			newTotalPercentage+= tax.percentage;
+		}
+		e.totalTaxPercentage = newTotalPercentage;
+		e.lastUpdatedBy = Authenticate.getLoggedInUser();
+		e.save();
+		EmployeeTypeController.loadEmployeeTypes();
+		
 	}
 }

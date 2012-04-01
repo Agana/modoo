@@ -27,10 +27,13 @@ $(
 					</li>
 					<li><a href="#tab-2">Show Staff Categories</a>
 					</li>
-					<!-- <li><a href="#tab-3">Edit Staff Categories</a> -->
+				 <li><a href="#tab-3">Edit Staff Categories</a> 
 					</li>
 				</ul>
 				<div id="tab-1">
+				#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
 					<form class="form-horizontal" action="@{EmployeeTypeController.createEmployeeType()}" method="post">
 						<div class="control-group">
 							<label class="control-label" for="fname">Category Name</label>
@@ -50,10 +53,9 @@ $(
 						<div class="control-group">
 							<label class="control-label" for="staffcat">Tax on salary</label>
 							<div class="controls" id="staffcat">
-
 								<select name="taxids" id="s1" multiple="multiple" class="input-xlarge">
 									#{list items:tax, as:'tax'}
-									<option value="${tax.taxName}">${tax.taxName}</option>
+									<option value="${tax.id}">${tax.taxName}</option>
 									#{/list}	
 								</select>
 
@@ -75,6 +77,7 @@ $(
 						<thead>
 							<tr>
 								<th>Category</th>
+								<th>Pre Tax Salary</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -82,6 +85,7 @@ $(
 							#{list items:empTypes, as:"empType"}
 							<tr>
 								<td>${empType.name}</td>
+								<td>${empType.preTaxSalary}</td>
 								<td style="text-align:center;"><input type="checkbox" name="empTypeid[]" value="${empType.id}"/></td>
 							</tr>
 							#{/list}
@@ -93,7 +97,54 @@ $(
 					</form>
 				</div>
 				
-			<!-- 	<div id="tab-3">Edit Staff Categories</div> -->
+			<div id="tab-3">
+			
+			<form class="form-horizontal" action="@{EmployeeTypeController.editEmployeeType()}" method="post">
+			#{if flash.error}
+						<p class="error">${flash.error}</p>
+					#{/if}
+						<div class="control-group">
+							<label class="control-label" for="fname">Select Category</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="fname" name="empTypeid" >
+									#{list items:empTypes, as:"empType"}
+									<option value="${empType.id}">${empType}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="fname">Category Name</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="fname" name="expenseCatName" />
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="staffcat">Pre Tax Salary</label>
+							<div class="controls" id="staffcat">
+								<input class="input-xlarge focused" id="fname" name="preTaxSalary" />
+							</div>
+						</div>
+						
+						
+						<div class="control-group">
+							<label class="control-label" for="staffcat">Tax on salary</label>
+							<div class="controls" id="staffcat">
+								<select name="taxids" id="s1" multiple="multiple" class="input-xlarge">
+									#{list items:tax, as:'tax'}
+									<option value="${tax.id}">${tax.taxName}</option>
+									#{/list}	
+								</select>
+
+							</div>
+						</div>
+
+						<button class="btn btn-success" style="margin-left: 360px;"
+							id="submit">Send</button>
+					</form>
+</div> 
 			</div>
 		</div>
 

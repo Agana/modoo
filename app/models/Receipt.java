@@ -7,14 +7,21 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import com.mysql.jdbc.Blob;
+
 @Entity
 public class Receipt extends Model {
 
-    public String title;
-    public File photo;
+   
+	public String title;
+    public File receipt;
+    @ManyToOne
+    public User createdBy;
+    
+    
 
-    public Receipt(String title, File photo) {
+    public Receipt(String title, File receipt) {
         this.title = title;
-        this.photo = photo;
+        this.receipt = receipt;
     }
 }

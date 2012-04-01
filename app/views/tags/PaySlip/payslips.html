@@ -1,0 +1,105 @@
+#{extends 'main.html'/} #{set title:'Employees'/} #{header /}
+#{bootstrap /} #{set 'moreScripts'}
+#{/set} #{set 'moreStyles'}
+<style type="text/css">
+    label {
+        width: 200px;
+    }
+</style>
+#{/set}
+<div class="wrapper col2">
+    <div id="topbar">
+        <div id="topnav"></div>
+        <br class="clear" />
+    </div>
+</div>
+<div class="wrapper col3">
+    <div class="content">
+        #{sidebar /}
+
+        <div
+            style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+            <div id="tab">
+                <ul>
+                    <li><a href="#tab-1">Manage Payroll</a>
+                    </li>
+                    <li><a href="#tab-2">Show Employees</a>
+                    </li>
+                    <!--   <li><a href="#tab-3">Edit Employee</a></li> -->
+                </ul>
+                <div id="tab-1">
+
+                    #{if flash.error}
+                    <p class="error">${flash.error}</p>
+                    #{/if}
+
+                    <form action="@{PaySlipController.PayEmployees()}" method="POST">
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Pay</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                #{list items:employees, as:"employee"}
+                                <tr>
+                                    <td>
+                                        ${employee}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" name="employeeIds[]" class="empid" value="${employee.id}" />
+                                    </td>
+                                </tr>
+                                #{/list}
+                            </tbody>
+                        </table>
+                        <input class="btn btn-success" style="margin-left: 580px;"
+                               id="submit" type="submit" />
+                    </form>
+
+                    <hr />
+
+
+                    </form>
+
+                </div>
+
+
+                <div id="tab-2">
+                    <form>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Amount Paid</th>
+                                    <th>Total Deductions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                #{list items:paidEmployees, as:"paidEmployee"}
+                                <tr>
+                                    <td>${paidEmployee}</td>
+                                    <!--                                    <td>${paidEmployee.afterTaxAmount}</td>
+                                                                        <td>${paidEmployee.totalTax}</td>-->
+                                    <td style="text-align: center;"><input type="checkbox" name="employeeid[]" value="${paidEmployee.id}" />
+                                    </td>
+                                </tr>
+                                #{/list}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+
+
+                <!-- <div id="tab-3">
+    Edit Employees
+</div> -->
+            </div>
+        </div>
+
+    </div>
+
+</div>
+#{footer /}

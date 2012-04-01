@@ -27,11 +27,12 @@ public class PurchaseController extends Controller {
 	}
 
 	public static void newPurchase(long regularItemId, float amount,
-			long expCategoryId, long supplierId, Date purchaseDate, User user) {
+			long expCategoryId, long supplierId, String recTitle, File photo, Date purchaseDate) {
 
 		System.out.println("Purchase category amount: " + amount);
 
 		RegularExpenseItem expCat = RegularExpenseItem.findById(regularItemId);
+		System.out.println("expCat id: " + expCat.id);
 		Supplier supplier = Supplier.findById(supplierId);
 		// Supplier supplier = RegularExpenseItem.find("findBy=", params)",
 		// params)
@@ -40,34 +41,124 @@ public class PurchaseController extends Controller {
 
 		float amountWitheld = 0;
 		float amountPaid = amount;
-
-		if (amount >= witheldTax.totalAmount) {
-			amountWitheld = (amount * witheldTax.percentage / 100);
-			amountPaid -= (amountWitheld); // getting the amount
-
-		}
-
-		Budget budget = Budget.findById(expCat.item_category.id);
-
-		System.out.println("budget" + budget);
-
-		if (amount <= budget.budgetAmount) {
-
-			Purchase purchase = new Purchase(expCat, amount, supplier,
-					purchaseDate);
-			purchase.amountPaid = amountPaid;
-			purchase.amountWitheld = amountWitheld;
-			purchase.createdBy = Authenticate.getLoggedInUser();
-
-			purchase.save();
-
+		
+		Budget budget = Budget.findById(expCat.id);
+		if (budget == null){
+			flash.error("Please create a budget first");
 			PurchaseController.loadPurchases();
-		} else {
+		}else{
 			
-			flash.error("Sorry, the amount exceeds your budget for %s", expCat.item_category);
-			PurchaseController.loadPurchases();
+			if (witheldTax == null){
+				flash.error("Please set the witheld tax first");
+				PurchaseController.loadPurchases();
+			}else{
+			if (amount <= budget.budgetAmount) {
 
+				if (amount >= witheldTax.totalAmount) {
+					amountWitheld = (amount * witheldTax.percentage / 100);
+					amountPaid -= (amountWitheld); // getting the amount
+
+				}
+				
+				
+				Purchase purchase = new Purchase(expCat, amount, supplier,
+						purchaseDate);
+				
+				purchase.amountPaid = amountPaid;
+				purchase.amountWitheld = amountWitheld;
+				purchase.createdBy = Authenticate.getLoggedInUser();
+
+				purchase.save();
+				
+				
+				Receipt receipt = new Receipt(recTitle, photo);
+				receipt.createdBy = Authenticate.getLoggedInUser();
+				receipt.save();
+
+				PurchaseController.loadPurchases();
+			} else {
+				
+				flash.error("Sorry, the amount exceeds your budget for %s", expCat.item_name);
+				PurchaseController.loadPurchases();
+
+			}
+			PurchaseController.loadPurchases();
+			}
 		}
+	}
+		
+		public static void editPurchase(long purchaseid, long regularItemId, float amount,
+				long expCategoryId, long supplierId, String recTitle, File photo, Date purchaseDate) {
+
+			System.out.println("Purchase category amount: " + amount);
+
+			RegularExpenseItem expCat = RegularExpenseItem.findById(regularItemId);
+			Supplier supplier = Supplier.findById(supplierId);
+			// Supplier supplier = RegularExpenseItem.find("findBy=", params)",
+			// params)
+			Purchase purchase = Purchase.findById(purchaseid);
+			purchase.regular_item.id = regularItemId;
+			purchase.amount = amount;
+			purchase.regular_item.item_category.id = expCategoryId;
+			purchase.supplier.id = supplierId;
+			purchase.purchaseDate = purchaseDate;
+			
+			WithHeldTax witheldTax = WithHeldTax.find("order by id desc").first();
+
+			float amountWitheld = 0;
+			float amountPaid = amount;
+			
+			Budget budget = Budget.findById(expCat.item_category.id);
+			if (budget == null){
+				flash.error("Please create a budget first");
+				PurchaseController.loadPurchases();
+			}else{
+				
+				if (witheldTax == null){
+					flash.error("Please set the witheld tax first");
+					PurchaseController.loadPurchases();
+				}else{
+				if (amount <= budget.budgetAmount) {
+
+					if (amount >= witheldTax.totalAmount) {
+						amountWitheld = (amount * witheldTax.percentage / 100);
+						amountPaid -= (amountWitheld); // getting the amount
+
+					}
+					
+					
+					purchase.amountPaid = amountPaid;
+					purchase.amountWitheld = amountWitheld;
+					purchase.createdBy = Authenticate.getLoggedInUser();
+
+					purchase.save();
+					
+					
+					Receipt receipt = new Receipt(recTitle, photo);
+					receipt.createdBy = Authenticate.getLoggedInUser();
+					receipt.save();
+
+					PurchaseController.loadPurchases();
+				} else {
+					
+					flash.error("Sorry, the amount exceeds your budget for %s", expCat.item_category);
+					PurchaseController.loadPurchases();
+
+				}
+				PurchaseController.loadPurchases();
+				}
+			}
+			
+		
+
+		
+
+		
+
+		
+
+		
+		
 	}
 
 	public static void deletePurchase(long[] purchaseid) {
@@ -79,4 +170,11 @@ public class PurchaseController extends Controller {
 
 		PurchaseController.loadPurchases();
 	}
+	
+	 public static void uploadPhoto(String title, File photo) {
+	        Receipt receipt = new Receipt(title, photo).save();
+	        renderJSON(receipt);
+	    }
+	
+	
 }

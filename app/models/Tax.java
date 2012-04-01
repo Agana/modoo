@@ -19,7 +19,6 @@ public class Tax extends Model {
 
     public Tax(String taxName, float percentage) {
         this.taxName = taxName;
-        this.createdBy = createdBy;
         this.percentage = percentage;
     }
     

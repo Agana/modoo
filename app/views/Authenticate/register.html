@@ -42,7 +42,7 @@ label {
 				</ul>
 
 				<div id="tab-1">
-
+<div id="registerForm">
 					<form class="form-horizontal" action="@{Authenticate.takeRegistrationDetails()}"
 						method="POST">
 
@@ -56,29 +56,25 @@ label {
 								</select>
 							</div>
 						</div>
+<p class="field">
 
-						<div class="control-group">
+						<div class="control-group"><span class="error">#{error 'user.username' /}</span>
 							<label class="control-label" for="fname">Username</label>
 							<div class="controls">
 								<input class="input-xlarge focused" id="fname"
-									name="username" />
+									name="user.username" value="${flash['user.username']}" />
 							</div>
 						</div>
+</p>
 
-
-						<div class="control-group">
+						<div class="control-group"><span class="error">#{error 'user.password' /}</span> 
 							<label class="control-label" for="fname">Password</label>
 							<div class="controls">
 								<input class="input-xlarge focused" id="fname"
-									name="password" />
+									name="user.password" value="${flash['user.password']}" type="password"/>
 							</div>
 						</div>
 
-						
-						
-						
-							
-							
 
 						<input class="btn btn-success" style="margin-left: 360px;"
 							id="submit" type="submit" />
@@ -113,6 +109,7 @@ label {
 							id="submit" type="submit" />
 
 					</form>
+				</div>
 				</div>
 
 				<!-- 

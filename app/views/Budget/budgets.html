@@ -11,6 +11,19 @@
         $("#datepicker").datepicker({dateFormat:'yy-mm-dd'});
         $("#datepicker-1").datepicker({dateFormat:'yy-mm-dd'});
     });
+    
+    if($('#budget').val() != "") {
+        var value = $('#budget').val().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        var intRegex = /^\d+$/;
+        if(!intRegex.test(value)) {
+            alert("Field must be numeric.");
+            success = false;
+        }
+    } else {
+    	 alert("This field is blank.");
+        success = false;
+    }
+    
     </script>
 #{/set}
 
@@ -38,8 +51,8 @@
             <div id="tab">
                 <ul>
                     <li><a href="#tab-1">Add Budget</a></li>
-                    <li><a href="#tab-2">Show Budgets</a></li>
-                   <!--  <li><a href="#tab-3">Edit Budget</a></li>  -->
+                    <li><a href="#tab-2">View Budgets</a></li>
+                    <li><a href="#tab-3">Edit Budget</a></li>
                 </ul>
                 <div id="tab-1">
                     <form class="form-horizontal" action="@{BudgetController.newBudget()}", method="POST">
@@ -48,15 +61,18 @@
                             <div class="controls">
                                 <select class="input-xlarge focused" id="expenseCat" name="expenseCat">
                                 	<option value="-"> -- Expense Category --</option>
-                                	#{list items:expenseCats, as:'expensecat'}
-                                	<option value="${expensecat.id}">${expensecat.categoryName}</option>
-                                	#{/list}
+                                	#{list items:expenseCats, as:"expenseCat"}
+									<option value="${expenseCat.id}">${expenseCat.categoryName}</option>
+									#{/list}	
                                 </select>
                             </div>
                         </div>
-
+						
+						
+					
+						
                         <div class = "control-group">
-                            <label class="control-label" for="budget">Allocated Amount</label>
+                            <label class="control-label" for="budget">Allocate Amount</label>
                             <div class="controls">
                                 <input class="input-xlarge focused" id="budget" type="text" name="budget" />
                             </div>
@@ -100,10 +116,31 @@
 					
 					</form>
                 </div>
-               <!--   <div id="tab-3">
-                    Edit Employees
+                <div id="tab-3">
+                    <form class="form-horizontal" action="@{BudgetController.editBudget()}", method="POST">
+					
+						<div class="control-group">
+							<label class="control-label" for="fname">Select Budget</label>
+							<div class="controls">
+								<select class="input-xlarge focused" id="fname" name="budgetid" >
+									#{list items:budgets, as:"budget"}
+									<option value="${budget.id}">${budget}</option>
+									#{/list}
+								</select>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="fname">New Amount</label>
+							<div class="controls">
+								<input class="input-xlarge focused" id="fname" name="budgetAmount" type="text" />
+							</div>
+						</div>
+
+						<input class="btn btn-success" style="margin-left: 360px;"
+							id="submit" type="submit" />    
+					</form>
                 </div>
-                -->
             </div>
         </div>
 

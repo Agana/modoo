@@ -1,42 +1,49 @@
-#{extends 'main.html'/} #{set title:'Employees'/} #{header /}
-#{bootstrap /} #{set 'moreScripts'}
-<script type="text/javascript">
-	$(function() {
-		$("#datepicker").datepicker({
-			dateFormat : 'yy-mm-dd'
-		});
-		$("#datepicker-1").datepicker({
-			dateFormat : 'yy-mm-dd'
-		});
-	});
-</script>
-#{/set} #{set 'moreStyles'}
-<style type="text/css">
-label {
-	width: 200px;
-}
-</style>
-#{/set}
+#{extends "main.html"/}
+#{set title:"Modoo" /}
+#{set 'moreStyles'}
+	<style type="text/css">
+		
+		.fl_right{
+			font-family:Georgia, "Times New Roman", Times, serif;
+			font-size: 20px;
+			color: white;
+		}
+		
+		#log_form{
+			margin:auto;
+			padding:20px 20px;
+		}
+	
+		.text{
+			width:260px;
+			font-size:20px;
+		}
+	
+		#login{
+			width:200px;
+			height:30px;
+		}
 
+	</style>
+#{/set}
+#{header /}
 <div class="wrapper col2">
-	<div id="topbar">
-		<div id="topnav"></div>
+	<div id="topbar">    
+		<div id="topnav">
+		</div> 
 		<br class="clear" />
 	</div>
 </div>
 <div class="wrapper col3">
-	<div class="content">
-		#{sidebar /}
-
-
-		<div id="content">
-			<h1>Login</h1>
-			<p>To login to ePlay, complete the form below and click Login!</p>
-			<p>
-				If you have not registered yet, <a href="@{Authenticate.register()}">
-					click here to sign up now</a>.
-			</p>
-			<div id="loginForm">
+	<div id="intro">
+		<div class="fl_left">
+			<h2>Welcome to Modoo</h2>
+			<p>Accounts and employee management to make you smile.</p>
+			<p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+		</div>
+		<div class="fl_right" style="width: 380px; height: 300px; background-color: #1C5E82;">
+		    <div id="log_form">
+				<div id="loginForm">
 				<form action="@{Authenticate.doLogin()}" method="POST">
 					<p class="field">
 						<span class="error">#{error 'username' /}</span> <label>Username</label>
@@ -49,4 +56,16 @@ label {
 					<input type="submit" name="create" value="Login" />
 				</form>
 			</div>
+			</div>
+			<div class="fl_right" style="width: 380px; height: 2px; background-color: #1C5E82;">
+			<a href="@{Application.checkEmpty()}">Create a new account</a>
+			</div>
 		</div>
+		<br class="clear" />
+	</div>
+  
+	<div style="height: 30px;">
+		&nbsp;
+	</div>
+</div>
+#{footer /}
