@@ -87,7 +87,7 @@ public class EmployeeTypeController extends Controller {
 			newTotalPercentage+= tax.percentage;
 		}
 		e.totalTaxPercentage = newTotalPercentage;
-		e.lastUpdatedBy = Authenticate.getLoggedInUser();
+//		e.lastUpdatedBy = Authenticate.getLoggedInUser();
 		e.save();
 		EmployeeTypeController.loadEmployeeTypes();
 		

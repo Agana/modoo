@@ -33,7 +33,7 @@ public class EmployeeController extends Controller {
 //		if (session.get("user") == null) {
 //			Authenticate.login();
 //		}
-		employee.createdBy = Authenticate.getLoggedInUser();
+//		employee.createdBy = Authenticate.getLoggedInUser();
 		employee.save();
 		EmployeeController.loadEmployees();
 	}
@@ -71,7 +71,7 @@ public class EmployeeController extends Controller {
 		editee.email = email; // TODO see if a check on isUser is necessary
 		editee.date_hired = date_fired;
 		editee.date_fired = date_fired;
-		editee.lastUpdateBy = Authenticate.getLoggedInUser(); //who last modified this employee record
+//		editee.lastUpdateBy = Authenticate.getLoggedInUser(); //who last modified this employee record
 		editee.save();
 		EmployeeController.loadEmployees();
 	}
