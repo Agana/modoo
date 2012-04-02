@@ -32,10 +32,10 @@ public class EmployeeTypeController extends Controller {
 //		System.out.println(expenseCatName);
 		float totalPercentage=0;
 //		System.out.println("Pre tax salary: " + preTaxSalary);
-		if(taxids == null){
-			flash.error("Please enter at least one tax deduction.");
-			EmployeeTypeController.loadEmployeeTypes();
-		}
+//		if(taxids == null){
+//			flash.error("Please enter at least one tax deduction.");
+//			EmployeeTypeController.loadEmployeeTypes();
+//		}
 		for(long i:taxids){
 			Tax tax = Tax.findById(i);
 			totalPercentage+= tax.percentage;
@@ -78,10 +78,10 @@ public class EmployeeTypeController extends Controller {
 		e.name = expenseCatName;
 		e.preTaxSalary = preTaxSalary;
 		float newTotalPercentage=0;
-//		if(taxids == null){
-//			flash.error("Please enter at least one tax deduction.");
-//			EmployeeTypeController.loadEmployeeTypes();
-//		}
+	//		if(taxids == null){
+	//			flash.error("Please enter at least one tax deduction.");
+	//			EmployeeTypeController.loadEmployeeTypes();
+	//		}
 		for(long i:taxids){
 			Tax tax = Tax.findById(i);
 			newTotalPercentage+= tax.percentage;
