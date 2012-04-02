@@ -16,9 +16,17 @@ public class Authenticate extends Controller {
 	}
 
 	public static void register() {
+		
 		List<Employee> employees = Employee.findAll();
+		
+		try{
 		List<User> users = User.findAll();
 		render("Authenticate/register.html", employees, users); //renders the registration page
+		}catch(Exception e){
+			flash.error("No users.");
+			render("Authenticate/register.html", employees); //renders the registration page
+		}
+		
 	}
 
 	public static User newUser;
