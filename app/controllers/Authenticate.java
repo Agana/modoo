@@ -33,8 +33,8 @@ public class Authenticate extends Controller {
 	
 	public static void takeRegistrationDetails(long employeeId, @Valid User user){
 		Employee userEmp = Employee.findById(employeeId);
-		System.out.println("User's id: " + employeeId);
-		System.out.println("Found's name " + userEmp.first_name);
+//		System.out.println("User's id: " + employeeId);
+//		System.out.println("Found's name " + userEmp.first_name);
 		user = new User(userEmp, user.username, userEmp.email, user.password, userEmp.first_name, userEmp.last_name);
 		if(!user.validateAndSave()){
 			params.flash();

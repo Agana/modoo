@@ -27,7 +27,7 @@ public class EmployeeController extends Controller {
 			String last_name, String sex, long employeetypeid, String email,
 			Date date_hired, Date date_fired) { // new
 		// employee
-		System.out.println(first_name);
+//		System.out.println(first_name);
 		Employee employee = new Employee(first_name, middle_name, last_name,
 				sex, employeetypeid, email, date_hired, date_fired);
 //		if (session.get("user") == null) {

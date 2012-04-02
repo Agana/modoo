@@ -29,9 +29,9 @@ public class EmployeeTypeController extends Controller {
 	}
 
 	public static void createEmployeeType(String expenseCatName,float preTaxSalary,long[] taxids) {
-		System.out.println(expenseCatName);
+//		System.out.println(expenseCatName);
 		float totalPercentage=0;
-		System.out.println("Pre tax salary: " + preTaxSalary);
+//		System.out.println("Pre tax salary: " + preTaxSalary);
 		if(taxids == null){
 			flash.error("Please enter at least one tax deduction.");
 			EmployeeTypeController.loadEmployeeTypes();
@@ -41,7 +41,7 @@ public class EmployeeTypeController extends Controller {
 			totalPercentage+= tax.percentage;
 		}
 		
-		System.out.println("Total Tax percentage "+totalPercentage);
+//		System.out.println("Total Tax percentage "+totalPercentage);
 		
 		//creating a new EmployeeType
 		EmployeeType empType = new EmployeeType(expenseCatName,preTaxSalary,totalPercentage);
