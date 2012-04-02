@@ -12,20 +12,27 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-    	Application.checkEmpty();
+    	Authenticate.login();
     }
 
    
     
     public static void checkEmpty(){
-    	List<User> users = User.findAll();
-    	if(users.isEmpty()){
+    	List<User> users = null;
+    	try{
+    	users = User.findAll();
+    	}catch(Exception e){
+    		flash.error("No users");
     		
-        render("Application/start.html");
+    		if(users.isEmpty()){
+        		
+    	        render("Application/start.html");
+    	    	}
+    	    	else{
+    	    		render("Authenticate/login.html");
+    	    	}
     	}
-    	else{
-    		render("Authenticate/login.html");
-    	}
+    	
     }
     
     public static void start(){
