@@ -26,7 +26,7 @@ public class TaxController extends Controller {
 //		}
 //			System.out.println(taxName);
 			Tax tax = new Tax(taxName, percentage);
-			tax.createdBy = Authenticate.getLoggedInUser();
+//			tax.createdBy = Authenticate.getLoggedInUser();
 			tax.save();
 			TaxController.loadTax();
 		}
