@@ -21,9 +21,9 @@ public class TaxController extends Controller {
 
 	public static void newTax(String taxName, float percentage) { // new
 		// employee
-		if (session.get("user") == null) {
-			Authenticate.login();
-		}
+//		if (session.get("user") == null) {
+//			Authenticate.login();
+//		}
 			System.out.println(taxName);
 			Tax tax = new Tax(taxName, percentage);
 			tax.createdBy = Authenticate.getLoggedInUser();
