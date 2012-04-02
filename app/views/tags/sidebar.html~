@@ -1,5 +1,5 @@
 	<!-- side bar -->
-	<div style="width:230px; float: left;"  id="menu5">
+	<div style="width:210px; float: left;"  id="menu5">
 		<ul>
 			<li><a href="@{BudgetController.loadBudgets()}">Budgets</a></li>			
 			<li><a href="@{EmployeeController.loadEmployees()}">Employees</a></li>

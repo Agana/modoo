@@ -12,7 +12,11 @@ import models.*;
 public class UserController extends Controller {
 
     public static void loadUsers() {// load employees management page
-        render("User/users.html");
+        render("Authenticate/register.html");
+    }
+    
+    public static void deleteUsers(){
+    	
     }
 
 //    public static void newUser(String username, String password,

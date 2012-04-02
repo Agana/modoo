@@ -85,7 +85,7 @@ date.format=yyyy-MM-dd
 # db=mem
 #
 # To connect to a local MySQL5 database, use:
- db=mysql://root:tothegloryoftheLord@localhost/modoodemo
+ db=mysql://root:tothegloryoftheLord@localhost/modoo
 #
 # To connect to a local PostgreSQL9 database, use:
 # db=postgres://user:pwd@host/database
@@ -222,4 +222,4 @@ mail.smtp=mock
 # to add to your application. Module paths are either absolutes or relative to
 # the application root.
 #
-#module.gae=${play.path}/modules/gae
+module.gae=${play.path}/modules/gae

@@ -54,14 +54,48 @@
             }
 			
 			.error{
-				background:red;
-				color:white;
+				background:white;
+				color:red;
 				width:300px;
 				border:yellow 1px solid;
 			}
+
+
+
+#menu5 {
+	width: 200px;
+	margin: 10px;
+}
+	
+#menu5 li a {
+	height: 32px;
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+  	height: 24px;
+	text-decoration: none;
+}	
+	
+#menu5 li a:link, #menu5 li a:visited {
+	color: #FFF;
+	display: block;
+	background:  url(/public/images/menu.gif) 0 -32px;
+	padding: 8px 0 0 10px;
+}
+	
+#menu5 li a:hover {
+	color: #FFF;
+	background:  url(/public/images/menu.gif);
+	padding: 8px 0 0 10px;
+}
+#menu5 ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
         </style>
         #{get 'moreScripts' /}
     </head>
+
     <body>
         #{doLayout /}
     </body>

@@ -57,7 +57,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	
 	}
 
-.col1{color:#666666; background:  url(/public/images/f.jpg);}
+.col1{color:#666666; background:  url(/public/images/f.jpg); background-repeat:no-repeat; }
 .col2{color:#FFFFFF; background-color:#000000;}
 .col3, .col4, .col5{color:#666666; background-color:#FFFFFF;}
 .col6{color:#999999; background-color:#F3F3F3;}
@@ -127,10 +127,10 @@ font-family: Lucida Grande;
         -webkit-background-clip: text;
 	-moz-background-clip: text;
 	background-clip: text;
-       color: grey;
+       color: blue;
 text-shadow: 0.7px rgba(255,255,255,0.8),
 0px 0px 1px rgba(0,0,0,.7);
-font-size:large;
+font-size:small;
 text-align:left;
 }
 

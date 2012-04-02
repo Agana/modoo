@@ -25,7 +25,12 @@ public class PurchaseCategoryController extends Controller {
     	
     	//TODO how do we take items from a dropdown strings or id?
     	System.out.println(categoryName);
-    	
+    	List<ExpenseCategory> e = ExpenseCategory.findAll();
+    	for (ExpenseCategory ec : e){
+    		if (ec.categoryName.equalsIgnoreCase(categoryName)){
+    			flash.error("%s already exists. Please use another name.", categoryName);
+    		}
+    	}
         ExpenseCategory category = new ExpenseCategory(categoryName);
         category.save();
         PurchaseCategoryController.loadCategories();

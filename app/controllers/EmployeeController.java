@@ -4,6 +4,7 @@ import play.*;
 
 import play.data.validation.Email;
 import play.data.validation.Password;
+import play.data.validation.Required;
 import play.mvc.*;
 
 import java.io.File;
@@ -56,12 +57,11 @@ public class EmployeeController extends Controller {
 	}
 	
 	public static void editEmployee(long employeeid, String first_name, String middle_name,
-			String last_name, String sex, long employeetypeid, String email,
+			String last_name, String sex, long employeetypeid, @Required @Email String email,
 			Date date_hired, Date date_fired){
 		if (session.get("user") == null) {
 			Authenticate.login();
 			}
-		
 		Employee editee = Employee.findById(employeeid);
 		editee.first_name = first_name;
 		editee.middle_name = middle_name;

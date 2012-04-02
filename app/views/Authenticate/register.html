@@ -1,49 +1,51 @@
-#{extends 'main.html'/} #{set title:'Employees'/} #{header /}
-#{bootstrap /} #{set 'moreScripts'}
-<script type="text/javascript">
-	$(function() {
-		$("#datepicker").datepicker({
-			dateFormat : 'yy-mm-dd'
-		});
-		$("#datepicker-1").datepicker({
-			dateFormat : 'yy-mm-dd'
-		});
-	});
-</script>
-#{/set} #{set 'moreStyles'}
-<style type="text/css">
-label {
-	width: 200px;
-}
-</style>
+#{extends 'main.html'/}
+#{set title:'Employees'/}
+
+#{header /}
+#{bootstrap /}
+
+#{set 'moreScripts'}
+	<script type="text/javascript">
+    
+    $(function(){
+        $("#datepicker").datepicker({dateFormat:'yy-mm-dd'});
+        $("#datepicker-1").datepicker({dateFormat:'yy-mm-dd'});
+    });
+    </script>
 #{/set}
 
+#{set 'moreStyles'}
+<style type="text/css">
+    label{
+        width: 200px;
+    }
+</style>
+#{/set}
 <div class="wrapper col2">
-	<div id="topbar">
-		<div id="topnav"></div>
-		<br class="clear" />
-	</div>
+    <div id="topbar">
+        <div id="topnav">
+        </div>
+        <br class="clear" />
+    </div>
 </div>
 <div class="wrapper col3">
-	<div class="content">
-		#{sidebar /}
+    <div class="content">
+        #{sidebar /}
 
 
 
-		<div
-			style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
-			<div id="tab">
-				<ul>
-					<li><a href="#tab-1">Add Categories</a>
+                
+
+        <div style="float: right; width: 700px; background-color: red; height: 60px; margin-top: 10px;">
+            <div id="tab">
+                <ul>
+                    <li><a href="#tab-1">Add Users</a>
 					</li>
-					<li><a href="#tab-2">Show Categories</a>
+					<li><a href="#tab-2">View Users</a>
 					</li>
-					<!-- <li><a href="#tab-3">Edit Categories</a></li>-->
-				</ul>
-
-				<div id="tab-1">
-<div id="registerForm">
-					<form class="form-horizontal" action="@{Authenticate.takeRegistrationDetails()}"
+                </ul>
+                <div id="tab-1">
+                       <form class="form-horizontal" action="@{Authenticate.takeRegistrationDetails()}"
 						method="POST">
 
 						<div class="control-group">
@@ -80,77 +82,45 @@ label {
 							id="submit" type="submit" />
 					</form>
 
-				</div>
-
-				<div id="tab-2">
-					<form action="@{PurchaseCategoryController.deleteCategory()}"
-						method="post">
-						#{if flash.error}
+                </div>
+                
+                
+                <div id="tab-2">
+					<form action="@{Authenticate.deleteUsers()}" method="post">
+					#{if flash.error}
 						<p class="error">${flash.error}</p>
-						#{/if}
-						<table>
-							<thead>
-								<th>Categories</th>
+					#{/if}
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Username</th>
 								<th>Delete</th>
-							</thead>
-							<tbody>
-								#{list items:expenseCats, as:"expenseCat"}
-								<tr>
-									<td>${expenseCat.categoryName}</td>
-									<td style="text-align: center;"><input type="checkbox"
-										name="categoryid[]" value="${expenseCat.id}" />
-									</td>
-								</tr>
-								#{/list}
-							</tbody>
-						</table>
-
-						<input class="btn btn-success" style="margin-left: 500px;"
-							id="submit" type="submit" />
-
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:users, as:"user"}
+							<tr>
+								<td>${user}</td>
+								<td>${user.username}</td>
+								<td style="text-align:center;"><input type="checkbox" name="userids[]" value="${user.id}"/></td>
+							</tr>
+							#{/list}
+						</tbody>
+					</table>
+					
+					<input class="btn btn-info" style="margin-left: 580px;" id="submit" type="submit"  value="Send" />    
+					
 					</form>
-				</div>
-				</div>
+                </div>
+                
+                
+                <div id="tab-3">
+            </div>
+        </div>
 
-				<!-- 
+    </div>
 
-
-
-
-		<div id="content">
-			<h1>Register User</h1>
-			<p>To register for ePlay, just complete the form below and click
-				the Register button when you are done!</p>
-			<div id="registerForm">
-				<form action="@{Authenticate.doRegister()}" method="POST">
-					<p class="field">
-						<span class="error">#{error 'user.username' /}</span> <label>Username</label>
-						<input type="text" name="user.username"
-							value="${flash['user.username']}" />
-					</p>
-					<p class="field">
-						<span class="error">#{error 'user.password' /}</span> <label>Password</label>
-						<input type="password" name="user.password" />
-					</p>
-					<p class="field">
-						<span class="error">#{error 'user.firstname' /}</span> <label>Firstname</label>
-						<input type="hidden" name="user.firstname"
-							value="${flash['user.firstname']}" />
-					</p>
-					<p class="field">
-
-						<span class="error">#{error 'user.lastname' /}</span> <label>Lastname</label>
-						<input type="text" name="user.lastname"
-							value="${flash['user.lastname']}" />
-					</p>
-					<p class="field">
-						<span class="error">#{error 'user.email' /}</span> <label>Email</label>
-						<input type="text" name="user.email"
-							value="${flash['user.email']}" />
-					</p>
-					<input type="submit" name="create" value="Register" />
-				</form>
-			</div>
-		</div>
-		
-		 -->
+</div>
+#{footer /}
+                

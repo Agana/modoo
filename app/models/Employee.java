@@ -37,11 +37,12 @@ public class Employee extends Model {
 	//user credentials 
 	@Required
 	@Email
+	@Column(unique = true)
 	public String email;
 
 	public Employee(@Required String first_name, String middle_name,
 			@Required String last_name, @Required String sex,
-			@Required long employeeTypeId, String email, Date date_hired, Date date_fired) {
+			@Required long employeeTypeId, @Required @Email String email, Date date_hired, Date date_fired) {
 
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -54,7 +55,7 @@ public class Employee extends Model {
 	}
 	
 	public Employee(@Required String first_name, String middle_name,
-			@Required String last_name, @Required long employeeTypeId, String email, @Required String sex,
+			@Required String last_name, @Required long employeeTypeId, @Required @Email String email, @Required String sex,
 			Date date_hired, Date date_fired) {
 
 		this.first_name = first_name;

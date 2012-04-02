@@ -15,6 +15,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.playframework.playclipse.playNature</nature>
 	</natures>
-	<linkedResources><link><name>C:\Users\Edem Tsalah\Documents\Play_Projects\play\modules\crud</name><type>2</type><location>C:/Users/Edem Tsalah/Documents/Play_Projects/play/modules/crud/app</location></link>
-</linkedResources>
+	<linkedResources>
+		<link>
+			<name>C:\Users\Edem Tsalah\Documents\Play_Projects\play\modules\crud</name>
+			<type>2</type>
+			<location>/home/aj/C::/Users/Edem Tsalah/Documents/Play_Projects/play/modules/crud/app</location>
+		</link>
+	</linkedResources>
 </projectDescription>

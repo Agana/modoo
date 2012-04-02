@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class ExpenseCategory extends Model {
 
-	@Column(unique=true)
+	
 	public String categoryName;
 	@ManyToOne
 	public User created_by;

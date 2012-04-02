@@ -97,8 +97,8 @@ label {
 						</div>
 
 
-						<input class="btn btn-success" style="margin-left: 360px;"
-							id="submit" type="submit" />
+						<input class="btn btn-info" style="margin-left: 360px;"
+							id="submit" type="submit" value="Send" />
 					</form>
 
 				</div>
@@ -116,7 +116,7 @@ label {
 									<th>Amount Paid</th>
 									<th>Amount With Held</th>
 									<th>Supplier</th>
-									<th>Receipt</th>
+									<!-- <th>Receipt</th> -->
 									<th>Delete</th>
 								</tr>
 							</thead>
@@ -128,7 +128,6 @@ label {
 									<td>${purchase.amountPaid}</td>
 									<td>${purchase.amountWitheld}</td>
 									<td>${purchase.supplier}</td>
-									<td></td>
 									<td style="text-align: center;"><input type="checkbox"
 										name="purchaseid[]" value="${purchase.id}" />
 									</td>
@@ -137,8 +136,8 @@ label {
 							</tbody>
 						</table>
 
-						<input class="btn btn-success" style="margin-left: 578px;"
-							id="submit" type="submit" />
+						<input class="btn btn-info" style="margin-left: 578px;"
+							id="submit" type="submit" value="Send" />
 
 					</form>
 				</div>

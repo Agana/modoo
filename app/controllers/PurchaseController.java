@@ -52,6 +52,8 @@ public class PurchaseController extends Controller {
 				flash.error("Please set the witheld tax first");
 				PurchaseController.loadPurchases();
 			}else{
+				
+				float difference = budget.budgetAmount - amount;
 			if (amount <= budget.budgetAmount) {
 
 				if (amount >= witheldTax.totalAmount) {

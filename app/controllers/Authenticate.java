@@ -12,12 +12,13 @@ public class Authenticate extends Controller {
 
 	private static void doLoginLogic(String username) {
 		session.put("user", username);
-		render("Employee/employees.html");
+		Authenticate.register();
 	}
 
 	public static void register() {
 		List<Employee> employees = Employee.findAll();
-		render(employees); //renders the registration page
+		List<User> users = User.findAll();
+		render("Authenticate/register.html", employees, users); //renders the registration page
 	}
 
 	public static User newUser;
@@ -77,6 +78,15 @@ public class Authenticate extends Controller {
 			session.remove("user");
 			Application.index();
 			}
+	
+	public static void deleteUsers(long[] userids) {
+
+		for (long i : userids) {
+			User user = User.findById(i);
+			user.delete();
+		}
+		Authenticate.register();
+	}
 
 
 			

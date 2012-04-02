@@ -2,7 +2,7 @@
 	<div id="header">
 		<div id="logo">
 			<h1 id="title"><a href="#">Modoo</a></h1>
-			<p id="sub"><strong>Smart Book Keeping</strong></p>
+			<p><strong>Smart Book Keeping</strong></p>
 		</div>
     <br class="clear" />
 	</div>

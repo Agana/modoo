@@ -3,9 +3,8 @@
 	<classpathentry excluding="views/**" kind="src" path="app"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="C:\Users\Edem Tsalah\Documents\Play_Projects\play\modules\crud"/>
-	
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/aj/play-1.2.4/framework/play-1.2.4.jar" sourcepath="/home/aj/play-1.2.4/framework/src" />
+	<classpathentry kind="lib" path="/home/aj/play-1.2.4/framework/play-1.2.4.jar" sourcepath="/home/aj/play-1.2.4/framework/src"/>
 	<classpathentry kind="lib" path="/home/aj/play-1.2.4/framework/lib/hibernate-core-3.6.1.Final.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://docs.jboss.org/hibernate/core/3.6/javadocs/"/>
@@ -80,6 +79,105 @@
 	<classpathentry kind="lib" path="/home/aj/play-1.2.4/framework/lib/commons-beanutils-1.8.3.jar"/>
 	<classpathentry kind="lib" path="/home/aj/play-1.2.4/framework/lib/jj-wikitext.jar"/>
 	<classpathentry kind="lib" path="/home/aj/play-1.2.4/framework/lib/slf4j-log4j12-1.6.1.jar"/>
-	
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/jsp-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/jsp/repackaged-appengine-ant-1.7.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/jsp/repackaged-appengine-ant-launcher-1.7.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/jsp/repackaged-appengine-jasper-el-6.0.29.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/jsp/repackaged-appengine-jasper-6.0.29.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/jsp/repackaged-appengine-tomcat-juli-6.0.29.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/servlet-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/el-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/shared/appengine-local-runtime-shared.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/appengine-api-1.0-sdk-1.6.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/orm/datanucleus-core-1.1.5.jar" sourcepath="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/src/orm/datanucleus-core-1.1.5-src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/orm/jdo2-api-2.3-eb.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/orm/datanucleus-jpa-1.1.5.jar" sourcepath="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/src/orm/datanucleus-jpa-1.1.5-src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/orm/datanucleus-appengine-1.0.10.final.jar" sourcepath="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/src/orm/datanucleus-appengine-1.0.10.final-src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/orm/geronimo-jta_1.1_spec-1.1.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/appengine-jsr107cache-1.6.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/jsr107cache-1.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/user/appengine-api-labs-1.6.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/lib/appengine-tools-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/aj/aeclipse/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.3.v201202290255r36/appengine-java-sdk-1.6.3/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="eclipse/classes"/>
 </classpath>

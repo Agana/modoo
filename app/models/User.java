@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class User extends Model {
-	
+
 	@Required
 	@OneToOne
 	public Employee emp;
@@ -16,6 +16,7 @@ public class User extends Model {
 	public String username;
 	@Required
 	@Email
+	@Column(unique = true)
 	public String email;
 	@Required
 	@Password
@@ -26,18 +27,17 @@ public class User extends Model {
 	public String firstname;
 	@Required
 	public String lastname;
-	
-	
 
-	public User(Employee employee, String username, String email, String password, String firstname, String lastname){
+	public User(Employee employee, String username, String email,
+			String password, String firstname, String lastname) {
 		this.emp = employee;
-		this.username=username;
-		this.email=email;
+		this.username = username;
+		this.email = email;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 		this.passwordHash = Codec.hexMD5(password);
@@ -47,5 +47,10 @@ public class User extends Model {
 		// return TRUE if there is a single matching username/passwordHash
 		return (count("username=? AND PasswordHash=?", username,
 				Codec.hexMD5(password)) == 1);
+	}
+	
+	@Override
+	public String toString(){
+		return firstname + " " + lastname;
 	}
 }
