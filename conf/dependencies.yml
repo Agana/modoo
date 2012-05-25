@@ -3,3 +3,5 @@
 require:
     - play
     - play -> crud
+    - play -> jelastic 0.2
+    - play -> cloudbees 0.2.2

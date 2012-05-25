@@ -6,7 +6,7 @@ application.name=Modoo Administration
 # ~~~~~
 # Set to dev to enable instant reloading and other development help.
 # Otherwise set to prod.
-application.mode=dev
+#application.mode=dev
 %prod.application.mode=prod
 
 # Secret key
@@ -82,13 +82,14 @@ date.format=yyyy-MM-dd
 # To quickly set up a development database, use either:
 #   - mem : for a transient in memory database (H2 in memory)
 #   - fs  : for a simple file written database (H2 file stored)
-# db=mem
+ #db=mem
 #
 # To connect to a local MySQL5 database, use:
- db=mysql://root:tothegloryoftheLord@localhost/modoo
+ #db=mysql://root:tothegloryoftheLord@localhost/modoo
 #
 # To connect to a local PostgreSQL9 database, use:
-# db=postgres://user:pwd@host/database
+# db=postgres://dbadmin:alifetolive@localhost:5432/modoodb
+ #db=postgres://user:pwd@localhost:5432/yabe
 #
 # If you need a full JDBC configuration use the following :
 # db.url=jdbc:postgresql:database_name
@@ -96,8 +97,22 @@ date.format=yyyy-MM-dd
 # db.user=root
 # db.pass=secret
 #
+
+
+#db.url=jdbc:mysql://mysql-modoo.jelastic.com/modoo
+#db.driver=com.mysql.jdbc.Driver
+#db.user=modooadmin
+#db.pass=alifetolive
+
+
+#CLOUDBEES
+db.url=jdbc:mysql://ec2-50-19-213-178.compute-1.amazonaws.com/modoo
+db.driver=com.mysql.jdbc.Driver
+db.user=agana
+db.pass=modoodata
+
 # Connections pool configuration :
-# db.pool.timeout=1000
+#db.pool.timeout=10000
 # db.pool.maxSize=30
 # db.pool.minSize=10
 #
@@ -113,7 +128,9 @@ date.format=yyyy-MM-dd
 # ~~~~~
 #
 # Specify the custom JPA dialect to use here (default to guess):
-# jpa.dialect=org.hibernate.dialect.PostgreSQLDialect
+#jpa.dialect=org.hibernate.dialect.PostgreSQLDialect
+jpa.dialect=org.hibernate.dialect.MySQLDialect
+ 
 #
 # Specify the ddl generation pattern to use. Set to none to disable it 
 # (default to update in DEV mode, and none in PROD mode):
@@ -222,4 +239,21 @@ mail.smtp=mock
 # to add to your application. Module paths are either absolutes or relative to
 # the application root.
 #
-module.gae=${play.path}/modules/gae
+#module.gae=${play.path}/modules/gae
+
+#%prod.db=${DATABASE_URL}
+#%prod.jpa.dialect=org.hibernate.dialect.PostgreSQLDialect
+#%prod.jpa.ddl=update
+
+
+#jelastic.api.login=nsiire@gmail.com
+#jelastic.api.password=YnVcgelOqp
+#jelastic.api.context=ROOT
+#jelastic.api.environment=modoo
+#jelastic.api.apihoster=app.jelastic.servint.net
+
+
+bees.api.key=2564C27B24DBCF73
+bees.api.secret=OFLFG3TIR8HLNR+TUUPACCLP7BHH2DTEEGWVTDFFFB0=
+bees.api.domain=agana
+bees.api.name=modoo
